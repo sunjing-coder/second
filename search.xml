@@ -1,24 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Hello World</title>
-    <url>/second/post/4a17b156.html</url>
-    <content><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post$ hexo new &quot;My New Post&quot;
-
-More info: Writing
-Run server$ hexo server
-
-More info: Server
-Generate static files$ hexo generate
-
-More info: Generating
-Deploy to remote sites$ hexo deploy
-
-More info: Deployment
-]]></content>
-  </entry>
-  <entry>
     <title>个人网站搭建</title>
     <url>/second/post/66fa05f8.html</url>
     <content><![CDATA[欢迎来到我的博客这是我用 Hexo + GitHub 搭建的第一个博客文章
@@ -102,143 +84,27 @@ npx hexo cl npx hexo g npx hexo d  # 清除缓存 → 生成静态文件 → 部
 ]]></content>
   </entry>
   <entry>
-    <title>补题</title>
-    <url>/second/post/b8f1496f.html</url>
-    <content><![CDATA[2025.9.28D-小红的好数对_牛客周赛 Round 111
-解题思路:
-巧妙枚举
-a*10^len(b)+b%11&#x3D;0;
--&gt;
-b%11&#x3D;-a*10^len(b);
+    <title>Hello World</title>
+    <url>/second/post/4a17b156.html</url>
+    <content><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
+Quick StartCreate a new post$ hexo new &quot;My New Post&quot;
 
-[!IMPORTANT]
-&#x2F;&#x2F;减法取模(A - B) % mod &#x3D;((A % mod) - (B % mod) +mod) % mod
+More info: Writing
+Run server$ hexo server
 
-#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 2e5 + 5;int a[N],sz[N];int p[15];int f[15][11];void init()&#123;    p[0]=1;    for(int i=1;i&lt;=11;i++)&#123;        p[i]=(p[i-1]*10)%11;    &#125;&#125;void solve()&#123;    int n,sum=0;    cin&gt;&gt;n;    for(int i=1;i&lt;=n;i++)&#123;        cin&gt;&gt;a[i];        sz[i]=to_string(a[i]).size();        f[sz[i]][a[i]%11]++;    &#125;    for(int i=1;i&lt;=n;i++)&#123;        for(int j=1;j&lt;=11;j++)&#123;            int t=(-a[i]*p[j]%11+11)%11;            sum+=f[j][t];        &#125;        if((-a[i]*p[sz[i]]%11+11)%11==a[i]%11)sum--;    &#125;    cout&lt;&lt;sum&lt;&lt;&#x27;\n&#x27;;    &#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    init();    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+More info: Server
+Generate static files$ hexo generate
 
+More info: Generating
+Deploy to remote sites$ hexo deploy
 
-
-E-小芳的排列构造_牛客周赛 Round 111
-当时我的难点是不知道如何凑k&#x3D;k-3*n-1,(我采用的是从小到大凑,但在大脑中进行模拟时出现了混乱)
-答案给出的是从大往小的凑,通过标记对进行凑k的数进行标记
-
-[!CAUTION]
-
-大数优先的优势：
-较大的 i 能提供更多的逆序对贡献（一次选择可减少更多 k 值）
-先选大数可以避免 “小数占用位置导致大数无法选择” 的问题
-能确保在 k 值较大时，用最少的选择次数凑够目标值
-
-
-
-
-#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 2e5 + 5;int vis[N];void solve()&#123;    int n,k;    cin&gt;&gt;n&gt;&gt;k;    if(n==1&amp;&amp;k==2)&#123;        cout&lt;&lt;1&lt;&lt;&#x27;\n&#x27;;        return;    &#125;    k-=(3*n-1);    vector&lt;int&gt;vec;    for(int i=n-2;i&gt;=1;i--)&#123;        if(k&gt;=i)&#123;            k-=i;            vis[i]=1;            vec.push_back(i);        &#125;        if(k&lt;=0)break;    &#125;    if(k!=0)&#123;        cout&lt;&lt;-1&lt;&lt;&#x27;\n&#x27;;        return;    &#125;    for(int i=vec.size()-1;i&gt;=0;i--)&#123;        cout&lt;&lt;vec[i]&lt;&lt;&#x27; &#x27;;    &#125;    cout&lt;&lt;n-1&lt;&lt;&#x27; &#x27;;    for(int i=1;i&lt;=n-2;i++)&#123;        if(!vis[i])cout&lt;&lt;i&lt;&lt;&#x27; &#x27;;    &#125;    cout&lt;&lt;n&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;//     cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
-
-F-小红的排列构造_牛客周赛 Round 111
-&#x2F;&#x2F;构造题
-&#x2F;&#x2F;先a[i]和a[n-i+1]交换
-&#x2F;&#x2F;在从a[i]依次往后交换
-&#x2F;&#x2F;因为发现了实施这种方案的最多交换次数是n-1,再交换一次会使得其中一个数归为
-&#x2F;&#x2F;题解使用位运算
-#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 2e5 + 5;int a[N];void solve()&#123;    int n,k;    cin&gt;&gt;n&gt;&gt;k;    if((n+1)/2&gt;k||k&gt;n-1)&#123;        cout&lt;&lt;-1&lt;&lt;&#x27;\n&#x27;;        return;    &#125;    for(int i=1;i&lt;=n;i++)a[i]=i;    for(int i=1;i&lt;=n/2;i++)&#123;        int t=a[i];        a[i]=a[n-i+1];        a[n-i+1]=t;    &#125;    if(n%2!=0)&#123;        int t=a[n/2];        a[n/2]=a[n/2+1];        a[n/2+1]=t;        k--;    &#125;    k-=n/2;    int i=1,flag=1;    while(k--)&#123;        if(i+1&gt;n)&#123;            flag=0;            break;        &#125;        int t=a[i];        a[i]=a[i+1];        a[i+1]=t;        i++;    &#125;    if(flag==0)&#123;        cout&lt;&lt;-1&lt;&lt;&#x27;\n&#x27;;        return;    &#125;    for(int i=1;i&lt;=n;i++)&#123;        cout&lt;&lt;a[i]&lt;&lt;&#x27; &#x27;;    &#125;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;//     cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
-
-
-
-2025.10.7D-Digital Pairing_牛客周赛 Round 112
-&#x2F;&#x2F;在保留前面结果的同时,进行假设如果,假设成立则该位有1
-&#x2F;&#x2F;新知识:如何在某数的某一位置1
-#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 4e5 + 5;void solve()&#123;    int n;    cin&gt;&gt;n;    vector&lt;int&gt;vec(2*n+1);    for(int i=1;i&lt;=2*n;i++)&#123;        cin&gt;&gt;vec[i];    &#125;    int ans=0;    for(int i=31;i&gt;=0;i--)&#123;        int cnt=0,cand=ans|(1&lt;&lt;i);        for(int j=1;j&lt;=2*n;j++)&#123;            if((cand&amp;vec[j])==cand)cnt++;        &#125;        if(cnt&gt;=n)ans=cand;    &#125;    cout&lt;&lt;ans&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
-
-
-
-E-Beautiful Sequence_牛客周赛 Round 112
-&#x2F;&#x2F;感觉的数学很好才能做,组合数学功底厚实,找规律的功底厚实
-&#x2F;&#x2F;1 1 3 4
-2^3+2^2&#x3D;(c(2,0)+c(2,1)+c(2,2))*3
-&#x2F;&#x2F;根据答案改错之后一直错误很可能的原因就是超时
-&#x2F;&#x2F;对2的幂进行预处理
-&#x2F;&#x2F;不用i64也行,long long也行
-#include &lt;bits/stdc++.h&gt;using namespace std;using i64 = int64_t;const i64 inf=0x3f3f3f3f,N = 2e5 + 1,mod=998244353;i64 cnt[N];i64 pw[N];void solve()&#123;    int n;    cin&gt;&gt;n;    memset(cnt,0,sizeof(cnt));    for(int i=1;i&lt;=n;i++)&#123;        int a;        cin&gt;&gt;a;        cnt[a]++;    &#125;    i64 ans=(pw[n]%mod-1%mod+mod)%mod;    for(int i=1;i&lt;=N;i++)&#123;        if(cnt[i])&#123;            int len=cnt[i];            int st=cnt[i];            for(int j=i+i;j&lt;=N;j+=i)&#123;                len+=cnt[j];            &#125;            for(int j=1;j&lt;=st;j++)&#123;                ans =((ans % mod) - (pw[len-j] % mod) +mod) % mod;            &#125;        &#125;    &#125;    cout&lt;&lt;ans%mod&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    pw[0]=1;    for(int i=1;i&lt;=N;i++)&#123;        pw[i]=(pw[i-1]*2)%mod;    &#125;    cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
-
-F-Bracket Counting_牛客周赛 Round 112
-&#x2F;&#x2F;dp题
-没做
-
-2025.10.13Dashboard - 2022年中国大学生程序设计竞赛女生专场 - Codeforces
-//https://codeforces.com/gym/104081/problem/G#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 5e5 + 5;struct node&#123;    int t,x;&#125;arr[N];bool cmp(node a,node b)&#123;    return a.t&lt;b.t;&#125;void solve()&#123;    int t,n,m,k;    cin&gt;&gt;t&gt;&gt;n&gt;&gt;m&gt;&gt;k;    for(int i=1;i&lt;=m;i++)&#123;        cin&gt;&gt;arr[i].t&gt;&gt;arr[i].x;    &#125;    arr[m+1].t=t;    arr[m+1].x=0;    sort(arr+1,arr+1+m+1,cmp);    int ans=inf,mark=0,s=0,people=0,gap;    for(int i=1;i&lt;=m+1;i++)&#123;//没考虑gap,导致之前的代码结果一致错误        gap=arr[i].t-s-1;        people=people-gap*k;        people=max(people,0ll);        // cout&lt;&lt;i&lt;&lt;&quot;:&quot;&lt;&lt;people&lt;&lt;&#x27; &#x27;;        if(arr[i].x==0&amp;&amp;people!=n)&#123;            cout&lt;&lt;&quot;Wrong Record\n&quot;;            return;        &#125;        people+=arr[i].x;        if(arr[i].x!=0&amp;&amp;arr[i].t&gt;=t)&#123;            int t=(people+1)/k+((people+1)%k!=0);            if(t&lt;=ans)&#123;                mark=arr[i].t;                ans=t;            &#125;        &#125;        people=max(people-k,0ll);        s=arr[i].t;    &#125;    cout&lt;&lt;mark&lt;&lt;&#x27; &#x27;&lt;&lt;ans&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
-
-
-
-再次把题目理解错了,wi的i并不是经过节点的下标,我所需要加入的wi是我所经过的节点个数k的w(i从1到k-1)的和
-用dis[i] [j]表示从1到 i 不包括1所经过的检点个数。
-
-[!NOTE]
-vector v(5); &#x2F;&#x2F; 5个元素，默认值为0 vector v(5, 10); &#x2F;&#x2F; 5个元素，每个元素的值为10
-vector&lt;vector&gt; vv(3, vector(4, 1));
-
-vector&lt;vector&gt;dis(n+1,vector(n+1,inf));  vector双重循环inf可达1e18,但是如果开数组使用memset(dis,inf,sizeof(dis))会出现我目前不知的错误
-//https://codeforces.com/gym/104081/problem/H#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=1e18,N = 500 + 5;int dis[N][N];int W[N];void solve()&#123;    memset(dis,0x3f3f3f3f,sizeof(dis));    int n,m;    cin&gt;&gt;n&gt;&gt;m;    vector&lt;vector&lt;pair&lt;int,int&gt;&gt; &gt;arr(n+1);    for(int i=0;i&lt;m;i++)&#123;        int u,v,w;        cin&gt;&gt;u&gt;&gt;v&gt;&gt;w;        arr[u].push_back(&#123;v,w&#125;);        arr[v].push_back(&#123;u,w&#125;);    &#125;    dis[1][0]=0;    for(int k=0;k&lt;n-1;k++)&#123;        for(int i=1;i&lt;=n;i++)&#123;            for(auto [v,w]:arr[i])&#123;                // cout&lt;&lt;dis[v][k+1]&lt;&lt;&quot; &quot;&lt;&lt;dis[i][k]+w&lt;&lt;endl;                dis[v][k+1]=min(dis[v][k+1],dis[i][k]+w);                            &#125;        &#125;    &#125;    int q;    cin&gt;&gt;q;    while(q--)&#123;        int t;        cin&gt;&gt;t;        memset(W,0,sizeof(W));        for(int i=1;i&lt;=n-1;i++)&#123;            int a;            cin&gt;&gt;a;            W[i]=a+W[i-1];        &#125;        int ans=inf;        for(int i=1;i&lt;=n-1;i++)&#123;            ans=min(ans,W[i]+dis[t][i]);        &#125;        cout&lt;&lt;ans&lt;&lt;endl;    &#125;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
-
-2025.10.16//https://codeforces.com/gym/105386/problem/A#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 4e5 + 5;struct node&#123;    int r;    vector&lt;int&gt;vec;    int sum=0;    int id;    bool mark=false;//标记一下是否出现-1,减一下枝&#125;;bool cmp(node a,node b)&#123;    return a.r&lt;b.r;&#125;bool cmp1(node a,node b)&#123;    return a.id&lt;b.id;&#125;void solve()&#123;    int n,m,k;    cin&gt;&gt;n&gt;&gt;m&gt;&gt;k;    vector&lt;node&gt;arr(n+5);    for(int i=1;i&lt;=n;i++)&#123;        cin&gt;&gt;arr[i].r;        arr[i].id=i;        for(int j=1;j&lt;=m;j++)&#123;            int x;            cin&gt;&gt;x;            arr[i].vec.push_back(x);            if(x!=-1)arr[i].sum+=x;            else arr[i].mark=true;        &#125;    &#125;    int las=-1;//这里非常关键    //当第一次碰到遇到有-1的时候,如果设las=0,则t=0+1    sort(arr.begin()+1,arr.begin()+1+n,cmp);    for(int i=1;i&lt;=n;i++)&#123;        int j=i;        while(j+1&lt;=n&amp;&amp;arr[j+1].r==arr[j].r)j++;        //具有相同星级的队伍,不更新las        for(int u=i;u&lt;=j;u++)&#123;            if(arr[u].mark==false)&#123;                if(arr[u].sum&lt;=las)&#123;                    cout&lt;&lt;&quot;No\n&quot;;                    return ;                &#125;                continue;            &#125;            int t=max(las+1-arr[u].sum,0ll);            for(int o=0;o&lt;m;o++)&#123;                if(arr[u].vec[o]==-1)&#123;                    int temp=min(k,t);                    arr[u].vec[o]=temp;                    arr[u].sum+=temp;                    t-=temp;                &#125;            &#125;            if(t&gt;0)&#123;                cout&lt;&lt;&quot;No\n&quot;;                return;            &#125;        &#125;        for(int u=i;u&lt;=j;u++)las=max(las,arr[u].sum);        i=j;    &#125;        cout&lt;&lt;&quot;Yes\n&quot;;        sort(arr.begin()+1,arr.begin()+1+n,cmp1);        for(int i=1;i&lt;=n;i++)&#123;            for(int j=0;j&lt;m;j++)&#123;                cout&lt;&lt;arr[i].vec[j]&lt;&lt;&quot; &quot;;            &#125;            cout&lt;&lt;&quot;\n&quot;;        &#125;    &#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
-
-2025.10.182023年ns
-//对于上下叠加//一块运动的处理https://codeforces.com/gym/104725/problem/A#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e6 + 5;void solve()&#123;    int n=12;    vector&lt;int&gt;v[10];    v[2].push_back(1);    v[3].push_back(2);    v[4].push_back(3);    int mp[4];    mp[1]=2;    mp[2]=3;    mp[3]=4;    while(n--)&#123;        int a,b;        cin&gt;&gt;a&gt;&gt;b;        int now=mp[a];        int nex=mp[a]+b;        int len=v[now].size();        int pos;        for(int j=0;j&lt;len;j++)&#123;            if(v[now][j]==a)&#123;pos=j;break;&#125;        &#125;        for(int j=pos;j&lt;len;j++)&#123;            mp[v[now][j]]=nex;            v[nex].push_back(v[now][j]);        &#125;        for(int j=pos;j&lt;len;j++)&#123;            v[now].pop_back();        &#125;    &#125;    if(v[9].size()==3)&#123;        cout&lt;&lt;&quot;Y&quot;&lt;&lt;endl;    &#125;else&#123;        cout&lt;&lt;&quot;N&quot;&lt;&lt;endl;    &#125;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
-
-
-
-从1开始,依次将Lis长度相同为i的序号存入cnt[i],
-//https://codeforces.com/gym/104725/problem/F#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e6 + 5;int n;vector&lt;int&gt;cnt[N],ans(N+1),arr(N+1);void solve()&#123;    int Max=0;    cin&gt;&gt;n;    bool flag=false;    for(int i=1;i&lt;=n;i++)&#123;        cin&gt;&gt;arr[i];        if(arr[i]&gt;Max+1)&#123;            flag=true;        &#125;else&#123;           Max=max(Max,arr[i]);        &#125;         cnt[arr[i]].push_back(i);    &#125;    if(flag)&#123;        cout&lt;&lt;&quot;-1\n&quot;;        return;    &#125;    int num=1;    for(int i=1;i&lt;=n;i++)&#123;        for(int j=cnt[i].size()-1;j&gt;=0;j--)&#123;            ans[cnt[i][j]]=num++;        &#125;        if(cnt[i].empty())&#123;            break;        &#125;    &#125;    for(int i=1;i&lt;=n;i++)&#123;        cout&lt;&lt;ans[i]&lt;&lt;&quot; &quot;;    &#125;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
-
-
-
-2025.10.19Problem - F - Codeforces
-以短竖线为讨论的基点
-字母只可能为’a’,’b’
-原因:短竖线两侧只可能是两个相同的字母或是不同的字母,
-若以未知字母作为讨论基点则情况可能更加复杂,易出错
-逻辑:若i处是’|’,box[i]&gt;1则说明’|’两侧字母相同,box[i]&lt;&#x3D;1则说明’|’两侧字母不相同
-#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 2e6 + 10;char arr[N];int box[N];void solve()&#123;    int n;    cin&gt;&gt;n;    arr[0]=&#x27;&amp;&#x27;;    arr[2]=&#x27;a&#x27;;    for(int i=0;i&lt;2*n+2;i++)cin&gt;&gt;box[i];    for(int i=1;i&lt;2*n+2;i++)&#123;        if(i%2==1)&#123;            arr[i]=&#x27;|&#x27;;            if(box[i]&gt;1)&#123;                arr[i+1]=arr[i-1];            &#125;else&#123;                if(arr[i-1]==&#x27;a&#x27;)&#123;                    arr[i+1]=&#x27;b&#x27;;                &#125;else&#123;                    arr[i+1]=&#x27;a&#x27;;                &#125;            &#125;        &#125;    &#125;    string s=&quot;&quot;;    for(int i=0;i&lt;2*n+2;i++)&#123;        if(arr[i]==&#x27;a&#x27;||arr[i]==&#x27;b&#x27;)s+=arr[i];    &#125;    cout&lt;&lt;s&lt;&lt;endl;    &#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
-
-Problem - K - Codeforces
-除1以外的人,胜利的概率是一样的,以2号为例
-若1掷出x,则2一次性胜利的概率为(m-x)&#x2F;m;
-若前i-1次都掷出x,则第i次胜利的概率为1&#x2F;m^(i-1)*(m-x)&#x2F;m;
-则2胜利的概率为求和i从1到无穷大(m-x)&#x2F;m^i;
-转化为对1&#x2F;m^i   i趋近于无穷的极限,得1&#x2F;(m-1);
-又因为其他(n-1)个人和2一样故1输的概率就为()(m-x)&#x2F;(m-1))^n;
-#include &lt;bits/stdc++.h&gt;using namespace std;using LL=long long;const int inf=0x3f3f3f3f,N = 1e6 + 5;LL mod=998244353;LL qkpow(LL a,LL p)&#123;	LL t=1,tt=a%mod;	while(p)	&#123;		if(p&amp;1)t=t*tt%mod;		tt=tt*tt%mod;		p&gt;&gt;=1;	&#125;	return t;&#125;LL getInv(LL a)&#123;	return qkpow(a,mod-2);&#125;void solve()&#123;    int n,m;	cin&gt;&gt;n&gt;&gt;m;	for(int i=1;i&lt;=m;i++)&#123;		cout&lt;&lt;((qkpow((m-i),n)%mod*getInv(qkpow((m-1),n)%mod)%mod)%mod)&lt;&lt;&#x27; &#x27;;	&#125;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
-
-2025.10.24Problem - J - Codeforces
-这道题的关键是要理解同构
-如果我们每次的操作对象是叶子结点,得到的新图实际上与上个图是同构的,这个我们很容易想明白。
-也就是说我们要得到一个与上一个图不同构的图我们需要操作非叶子节点,然后把它变成叶子节点,显然新得到的图与上一个图不同构,并且我们每次操作只能使得一个非叶子结点变成叶子结点。
-所以最后的赢家与非叶子节点的数量的奇偶性有关,(n&lt;&#x3D;3是永远是Bob赢)为奇数则Bob,为偶数则Alice
-#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e6 + 5;int arr[55];void solve()&#123;    int n;    cin&gt;&gt;n;    for(int i=1;i&lt;=n-1;i++)    &#123;        int a,b;        cin&gt;&gt;a&gt;&gt;b;        arr[a]++;        arr[b]++;    &#125;    if(n&lt;=3)&#123;        cout&lt;&lt;&quot;Bob\n&quot;;        return ;    &#125;    int cnt=0;    for(int i=1;i&lt;=n;i++)&#123;        if(arr[i]&gt;1)cnt++;    &#125;    cout&lt;&lt;(cnt%2==0?&quot;Alice&quot;:&quot;Bob&quot;)&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
-
-2025.10.27Problem - E - Codeforces
-一开始就想到要用前缀这方面的内容,虽然想法并不完善
-我这道题没意识到的点:
-
-x,y可以分别处理,每处理一次都只是一次单方向处理,最后对结果直接*2输出
-
-如果对x,y一起处理就会麻烦很多,前缀和和后缀和很可能都不会派上太大的用处
-
-ans+&#x3D;points[i].first*i- pre[i-1];   前缀加了几个数就用几个points[i].first减
-
-
-#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e3 + 5;int pre[N*N];void solve()&#123;    int n,m;    cin&gt;&gt;n&gt;&gt;m;    map&lt;int,vector&lt; pair&lt;int,int&gt;&gt;&gt; mp;       for(int i=1;i&lt;=n;i++)&#123;        for(int j=1;j&lt;=m;j++)&#123;            int x;            cin&gt;&gt;x;            mp[x].push_back(&#123;i,j&#125;);        &#125;    &#125;    int ans=0;    for(auto [val,points]:mp)&#123;        int len=points.size();        if(len&lt;=1)continue;        pre[0]=points[0].first;        for(int i=1;i&lt;len;i++)&#123;            pre[i]=pre[i-1]+points[i].first;            ans+=points[i].first*i- pre[i-1];        &#125;        sort(points.begin(),points.end(),[&amp;](auto a,auto b)&#123;return a.second&lt;b.second;&#125;);        pre[0]=points[0].second;        for(int i=1;i&lt;len;i++)&#123;            pre[i]=pre[i-1]+points[i].second;            ans+=points[i].second*i- pre[i-1];        &#125;    &#125;    cout&lt;&lt;ans*2&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
-
-Problem - J - Codeforces
-思想:枚举
-目标:最大和次大的权值和最小
-#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=2e18,N = 3e5 + 5,M = 1e6+5;struct node&#123;    int u,v,w;&#125; arr[M];//记录原始数据struct edge&#123;    int to,next,w;&#125;e[M&lt;&lt;1];//记录边,e[i]  i-&gt;to 从i点到to点,用next记录下一个节点,采用的是头插法,最初的head[i]值为0void add(int u,int v,int w)&#123;    e[++tot]=&#123;v,head[u],w&#125;;    head[u]=tot;&#125;int n,m,head[N],tot,vis[N];void dijkstra(int s,int *dis)&#123;    priority_queue&lt;pair&lt;int,int&gt;,vector&lt;pair&lt;int,int&gt;&gt;,greater&lt;pair&lt;int,int&gt;&gt;&gt;q;//小根堆    q.push(&#123;0,s&#125;);    for(int i=1;i&lt;=n;i++)&#123;dis[i]=inf;vis[i]=0;&#125;    dis[s]=0;    while(!q.empty())&#123;        auto [d,u]=q.top();        q.pop();        if(vis[u])continue;        vis[u]=1;        for(int i=head[u];i;i=e[i].next)&#123;            int v=e[i].to;            int w=max(d,e[i].w);            //s-&gt;u-&gt;v  w为这两段中最大的            if(dis[v]&gt;w)&#123;//我们寻找到s-&gt;v中最小的                dis[v]=w;                q.push(&#123;w,v&#125;);            &#125;        &#125;    &#125;&#125;int dis1[N],dis2[N];void solve()&#123;    cin&gt;&gt;n&gt;&gt;m;    for(int i=1;i&lt;=n;i++)head[i]=0;    for(int i=1;i&lt;=m;i++)&#123;        cin&gt;&gt;arr[i].u&gt;&gt;arr[i].v&gt;&gt;arr[i].w;        add(arr[i].u,arr[i].v,arr[i].w);        add(arr[i].v,arr[i].u,arr[i].w);    &#125;    dijkstra(1,dis1);    dijkstra(n,dis2);    //方便后续将路径分为 1-&gt;u-&gt;v-&gt;n    //1-&gt;v-&gt;u-&gt;n;    int ans=inf;    for(int i=1;i&lt;=m;i++)&#123;        int u=arr[i].u,v=arr[i].v,w=arr[i].w;        int temp=min(max(dis1[u],dis2[v]),max(dis1[v],dis2[u]));        if(temp&lt;=w)&#123;//若w作为最大值则进入,枚举了每个w能不能作为最大值            ans=min(ans,w+temp);        &#125;    &#125;    cout&lt;&lt;ans&lt;&lt;endl;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
-
+More info: Deployment
 ]]></content>
   </entry>
   <entry>
     <title>ACM成长</title>
     <url>/second/post/a03e0b58.html</url>
-    <content><![CDATA[答应我都来打ACM好吗?模版#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e6 + 5;void solve()&#123;    &#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+    <content><![CDATA[模版#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e6 + 5;void solve()&#123;    &#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
 
 
 
@@ -247,7 +113,7 @@ Problem - J - Codeforces
 #include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf = 0x3f3f3f3f;const double EPS = 1e-8; const int MAX_DEPTH = 20;double jie(double x) &#123; if (x &lt;= 0 || fabs(x - round(x)) &gt; EPS) &#123;     return -1;  &#125; int n = (int)round(x); if (x &gt; 20) return -1; int res = 1; for (int i = n; i &gt;= 1; i--) &#123;     res *= i; &#125; return res;&#125;stack&lt;string&gt; st; bool found = false; bool equals(double a, double b) &#123; return fabs(a - b) &lt; EPS;&#125;void dfs(double x, int depth) &#123; if (found || depth &gt; MAX_DEPTH) &#123;     return; &#125; if (equals(x, 3.0)) &#123;     found = true;     cout &lt;&lt; &quot;YES\n&quot;;     cout &lt;&lt; &quot;操作路径: &quot;;     vector&lt;string&gt; path;     while (!st.empty()) &#123;         path.push_back(st.top());         st.pop();     &#125;     reverse(path.begin(), path.end());     for (const auto&amp; op : path) &#123;         cout &lt;&lt; op &lt;&lt; &quot; -&gt; &quot;;     &#125;     cout &lt;&lt; &quot;3\n&quot;;     return; &#125; double next = sqrt(x); if (next &gt; 0) &#123;     st.push(&quot;sqrt(&quot; + to_string((int)round(x)) + &quot;)&quot;);     dfs(next, depth + 1);     if (!found) st.pop();     else return; &#125; next = ceil(x); if (next != x) &#123;      st.push(&quot;ceil(&quot; + to_string(x) + &quot;)&quot;);     dfs(next, depth + 1);     if (!found) st.pop();     else return; &#125; // 尝试阶乘操作 next = jie(x); if (next != -1) &#123;     st.push(&quot;jie(&quot; + to_string((int)round(x)) + &quot;)&quot;);     dfs(next, depth + 1);     if (!found) st.pop();     else return; &#125;&#125;void solve() &#123; dfs(4.0, 0);&#125;signed main() &#123; ios::sync_with_stdio(0), cin.tie(0), cout.tie(0); int t = 1; // cin &gt;&gt; t; while (t--) &#123;     solve(); &#125; return 0;&#125;#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e6 + 5,MAX_Depth=20;const double eps=1e-8;bool equal(double a,double b)&#123; return fabs(a-b)&lt;eps;&#125;stack&lt;string&gt;st;double jie(double x)&#123; if(x&lt;=0||fabs(x-round(x)&gt;eps))return -1; int n=(int)round(x); if(x&gt;20)return -1; int res=1; for(int i=n;i&gt;=1;i--)&#123;     res*=i; &#125; return res;&#125;void dfs(double x,int dep)&#123; if(dep&gt;MAX_Depth)return; if(equal(x,3.0))&#123;     queue&lt;string&gt;q;     while(!st.empty())&#123;         q.push(st.top());         st.pop();     &#125;     cout&lt;&lt;&quot;3 :&quot;;     while(!q.empty())&#123;         cout&lt;&lt;q.front()&lt;&lt;&quot;--&gt;&quot;;         q.pop();     &#125;		exit(0); &#125; double next=sqrt(x); if(next&gt;0)&#123;     st.push(&quot;sqrt&quot;);     dfs(next,dep+1);     st.pop(); &#125; next=ceil(x); if(next!=x)&#123;     st.push(&quot;ceil&quot;);     dfs(next,dep+1);     st.pop(); &#125; next=jie(x); if(next!=-1)&#123;     st.push(&quot;jie&quot;);     dfs(next,dep+1);     st.pop(); &#125;&#125;void solve()&#123; dfs(4.0,0);&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1; // cin&gt;&gt;t; while(t--)&#123;     solve(); &#125;	return 0;&#125;
 
 
-取模&#x2F;同余原理&#x2F;求逆元(A + B) % mod = ((A % mod) + (B % mod)) % mod(A * B) % mod = ((A % mod) * (B % mod)) % mod//减法取模    (A - B) % mod =((A % mod) - (B % mod) +mod) % mod//除法取模(A / B) % mod = ((A % mod) * (inv(B) % mod)) % mod    LL qkpow(LL a,LL p,LL mod)&#123;	LL t=1,tt=a%mod;	while(p)	&#123;		if(p&amp;1)t=t*tt%mod;		tt=tt*tt%mod;		p&gt;&gt;=1;	&#125;	return t;&#125;LL getInv(LL a,LL mod)&#123;	return qkpow(a,mod-2,mod);&#125;
+取模&#x2F;同余原理&#x2F;求逆元a ^ b % p = ((a % p)^b) % p (A + B) % mod = ((A % mod) + (B % mod)) % mod(A * B) % mod = ((A % mod) * (B % mod)) % mod//减法取模    (A - B) % mod =((A % mod) - (B % mod) +mod) % mod//除法取模(A / B) % mod = ((A % mod) * (inv(B) % mod)) % mod    LL qkpow(LL a,LL p,LL mod)&#123;	LL t=1,tt=a%mod;	while(p)	&#123;		if(p&amp;1)t=t*tt%mod;		tt=tt*tt%mod;		p&gt;&gt;=1;	&#125;	return t;&#125;LL getInv(LL a,LL mod)&#123;	return qkpow(a,mod-2,mod);&#125;
 
 878. 第 N 个神奇数字 - 力扣（LeetCode）
 //二分答案-&gt;检验答案好统计//简单的容斥原理class Solution &#123;public:long long mod=1e9+7;    int nthMagicalNumber(int n, int a, int b) &#123;        long long mid;        long long l=0,r=(long long)n*min(a,b);        long long gcd=__gcd(a,b);        long long lcm=a/gcd*b;        while(l&lt;=r)&#123;            mid=(l+r)&gt;&gt;1;            if((mid/a+mid/b-mid/lcm)&gt;=n)&#123;//容斥原理                r=mid-1;            &#125;else&#123;                l=mid+1;            &#125;        &#125;        return (int)(l%mod);    &#125;&#125;;
@@ -414,6 +280,19 @@ void hanluota(int size,char a,char b,char c)&#123;    if(size==0)&#123;        r
 
 32. 最长有效括号//得到一个字符后,以其为开始的点向左延伸,得到这个字符的最长子串//若遇&#x27;(&#x27;,则dp[i]=0;//若遇&#x27;)&#x27;,则dp[i]=(s[i-1-dp[i-1]]==&#x27;(&#x27;?dp[i-1]+2+dp[i-1-dp[i-1]-1]:0)class Solution &#123;public:    int dp[3*10000+5];   int longestValidParentheses(string s) &#123;        s=&quot; &quot;+s;        int n=s.length();        for(int i=1;i&lt;n;i++)&#123;            if(s[i]==&#x27;)&#x27;)&#123;                int j=i-1-dp[i-1];                if(s[j]==&#x27;(&#x27;)&#123;                    dp[i]=dp[i-1]+2+dp[j-1];                &#125;            &#125;        &#125;        int ans=0;        for(int i=1;i&lt;n;i++)&#123;            ans=max(ans,dp[i]);        &#125;        return ans;    &#125;&#125;;
 
+1274: D003 Help JimmyP1274 - D003 Help Jimmy - NENUOJ
+Min(i,true)表示从第i块板子的左侧出发到地面的最短距离
+minleft[i]用来记录从第i块板子的左侧出发到地面的最短距离
+minright[i]用来记录从第i块板子的右侧出发到地面的最短距离
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e3 + 5;int minleft[N];int minright[N],Max,n;struct node&#123;    int x1,x2,h;&#125;arr[N];bool cmp(node a,node b)&#123;    return a.h&gt;b.h;&#125;int Min(int k,bool left)&#123;    int x,y=arr[k].h,i;    //往左侧行就给x赋值为k左侧的坐标x1    if(left)&#123;        x=arr[k].x1;    &#125;else &#123;        x=arr[k].x2;    &#125;    //查询k块板子的下面是否有其他木板    for(i=k+1;i&lt;=n;i++)&#123;        if(arr[i].x1&lt;=x&amp;&amp;arr[i].x2&gt;=x)&#123;            break;        &#125;    &#125;    //若没有    if(i==(n+1))&#123;        if(y&gt;Max)return inf;//第k块板子到地面的距离大于Max,则直接返回inf        else return y;        //若小于则所花费的时间就是y    &#125;    //若有    else&#123;        //第k块板子到i块板子的距离大于Max,则返回inf        if(y-arr[i].h&gt;Max)return inf;    &#125;    //分别计算从第i块板子的左侧,右侧出发所花费的水平方线上的时间    int lefttime=y-arr[i].h+x-arr[i].x1,righttime=y-arr[i].h+arr[i].x2-x;    if(minleft[i]==-1)&#123;        minleft[i]=Min(i,true);    &#125;    if(minright[i]==-1)&#123;        minright[i]=Min(i,false);    &#125;    //第k块板子(下面有板子i)到地面的最短时间,k块板子到i块板子的水平距离+降落到i块板子的竖直距离+第i块板子到地面的最短距离(分从第i块板子的左侧出发还是右侧出发)    return min(minleft[i]+lefttime,minright[i]+righttime);&#125;void solve()&#123;    int x,y;    cin&gt;&gt;n&gt;&gt;x&gt;&gt;y&gt;&gt;Max;    arr[0].x1=x,arr[0].x2=x,arr[0].h=y;    for(int i=0;i&lt;=n;i++)&#123;        minleft[i]=-1;        minright[i]=-1;    &#125;    for(int i=1;i&lt;=n;i++)&#123;        cin&gt;&gt;arr[i].x1&gt;&gt;arr[i].x2&gt;&gt;arr[i].h;    &#125;    sort(arr+1,arr+1+n,cmp);    cout&lt;&lt;Min(0,true)&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+
+
+1275: D004 最长公共子序列&#x2F;&#x2F;动态规划的重要思想就是将整体问题划分为子问题
+当s1的第i个字母与s2的第j个字母一样时,我们原本要求的s1中的前i个字母和s2中的前j个字母&#x2F;有多少个最长公共子序列的问题(即求dp&#x2F;[i]&#x2F;[j])便转化为了求dp&#x2F;[i-1]&#x2F;[j-1]
+当它们不一样时,我们便可在dp&#x2F;[i-1]&#x2F;[j]和dp&#x2F;[i]&#x2F;[j-1]中取最大值
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 2e2 + 5;int dp[N][N];string s1,s2;void solve()&#123;    while(cin&gt;&gt;s1&gt;&gt;s2)&#123;        s1=&quot; &quot;+s1;        s2=&quot; &quot;+s2;        int len1=s1.length();        int len2=s2.length();        memset(dp, 0, sizeof(dp));        for(int i=1;i&lt;len1;i++)&#123;            for(int j=1;j&lt;len2;j++)&#123;                if(s1[i]==s2[j])&#123;                    dp[i][j] = dp[i-1][j-1] + 1;                 &#125;else&#123;                    dp[i][j] = max(dp[i-1][j], dp[i][j-1]);                 &#125;            &#125;        &#125;        cout&lt;&lt;dp[len1-1][len2-1]&lt;&lt;endl;    &#125;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
 
 
 12.差分P5026 Lycanthropy - 洛谷等差数列差分
@@ -500,7 +379,7 @@ int lowbit(int x) &#123;    return x &amp; -x;&#125;void update(int k, int x) &#
 &#x2F;&#x2F;求和可得某一位置的数
 #include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e6 + 5;int n,t[N],arr[N];int lowbit(int x)&#123;    return x&amp;(-x);&#125;void update(int x,int val)&#123;    for(int i=x;i&lt;=n;i+=lowbit(i))t[i]+=val;&#125;int query(int x)&#123;    int ans=0;    for(int i=x;i&gt;0;i-=lowbit(i))ans+=t[i];    return ans;&#125;void solve()&#123;    int m;    cin&gt;&gt;n&gt;&gt;m;    for(int i=1;i&lt;=n;i++)&#123;        cin&gt;&gt;arr[i];    &#125;    for(int i=1;i&lt;=n;i++)&#123;        update(i,arr[i]-arr[i-1]);    &#125;    while(m--)&#123;        int op,x,y,k;        cin&gt;&gt;op;        if(op==1)&#123;            cin&gt;&gt;x&gt;&gt;y&gt;&gt;k;            update(x,k);            update(y+1,-k);        &#125;        else&#123;            cin&gt;&gt;x;            cout&lt;&lt;query(x)&lt;&lt;endl;        &#125;    &#125;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
 
-&#x2F;&#x2F;范围增加,范围查询线段树void pushup(int o) &#123;    t[o] = t[o &lt;&lt; 1] + t[o &lt;&lt; 1 | 1];&#125;void build(int s = 1, int e = n, int o = 1) &#123;    if (s == e) &#123;        // 递归出口        t[o] = a[s];        return;    &#125;    int mid = (s + e) &gt;&gt; 1;    build(s, mid, o &lt;&lt; 1);    build(mid + 1, e, o &lt;&lt; 1 | 1);    pushup(o);&#125;void pushdown(int s, int e, int o) &#123;    if (lz[o]) &#123;        int mid = (s + e) / 2;        t[o * 2] += (mid - s + 1) * lz[o];        t[o * 2 + 1] += (e - mid) * lz[o];        lz[o * 2] += lz[o];        lz[o * 2 + 1] += lz[o];        lz[o] = 0;    &#125;&#125;void update(int l, int r, int v, int s, int e, int o) &#123;    if (l &lt;= s &amp;&amp; r &gt;= e) &#123;        t[o] += (e - s + 1) * v;        lz[o] += v;        return;    &#125;    pushdown(s, e, o);    int mid = (s + e) / 2;    if (l &lt;= mid) update(l, r, v, s, mid, o * 2);    if (r &gt; mid) update(l, r, v, mid + 1, e, o * 2 + 1);    pushup(o);&#125;int query(int l, int r, int s, int e, int o) &#123;    if (l &lt;= s &amp;&amp; e &lt;= r) &#123;        return t[o];    &#125;    pushdown(s, e, o);    int mid = (s + e) / 2;    int res = 0;    if (l &lt;= mid) res += query(l, r, s, mid, o * 2);    if (r &gt; mid) res += query(l, r, mid + 1, e, o * 2 + 1);    return res;&#125;
+&#x2F;&#x2F;范围增加,范围查询线段树void build(int s, int t, int p) &#123;  if (s == t) &#123;    d[p] = a[s];    return;  &#125;  int m = s + ((t - s) &gt;&gt; 1);  build(s, m, p * 2), build(m + 1, t, p * 2 + 1);  d[p] = d[p * 2] + d[(p * 2) + 1];&#125;void pushdown(int s, int e, int o) &#123;    if (lz[o]) &#123;        int mid = (s + e) / 2;        t[o * 2] += (mid - s + 1) * lz[o];        t[o * 2 + 1] += (e - mid) * lz[o];        lz[o * 2] += lz[o];        lz[o * 2 + 1] += lz[o];        lz[o] = 0;    &#125;&#125;void update(int l, int r, int v, int s, int e, int o) &#123;    if (l &lt;= s &amp;&amp; r &gt;= e) &#123;        t[o] += (e - s + 1) * v;        lz[o] += v;        return;    &#125;    pushdown(s, e, o);    int mid = (s + e) / 2;    if (l &lt;= mid) update(l, r, v, s, mid, o * 2);    if (r &gt; mid) update(l, r, v, mid + 1, e, o * 2 + 1);    pushup(o);&#125;int getsum(int l, int r, int s, int t, int p) &#123;  if (l &lt;= s &amp;&amp; t &lt;= r)    return d[p];   pushdown(s,t,p);  int m = s + ((t - s) &gt;&gt; 1), sum = 0;  if (l &lt;= m) sum += getsum(l, r, s, m, p * 2);  if (r &gt; m) sum += getsum(l, r, m + 1, t, p * 2 + 1);  return sum;&#125;
 
 可持久化线段树void build(int&amp; x, int l, int r)&#123;    x = ++idx;    if (l == r)return;    int mid = (l + r) &gt;&gt; 1;    build(lc(x), l, mid);    build(rc(x), mid + 1, r);&#125;void update(int pre, int&amp; o, int l, int r, int v)&#123;    o = ++idx;    t[o] = t[pre];    t[o].val++;    if (l == r)return;    int mid = (l + r) &gt;&gt; 1;    if (v &lt;= mid)        update(lc(pre), lc(o), l, mid, v);    else        update(rc(pre), rc(o), mid + 1, r, v);&#125;int query(int x, int y, int l, int r, int k)&#123;    if (l == r)return l;    int mid = (l + r) &gt;&gt; 1;    int s = t[lc(y)].val - t[lc(x)].val;    if (k &lt;= s)        return query(lc(x), lc(y), l, mid, k);    else        return query(rc(x), rc(y), mid + 1, r, k - s);&#125;
 
@@ -531,6 +410,14 @@ Prim算法struct Edge &#123;    ll x, c;    bool operator&lt; (const Edge &amp;u
 //https://codeforces.com/gym/105386/problem/G#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e6 + 5;int a[N];void solve()&#123;    int n;    cin&gt;&gt;n;    if(n%4==0||n==1)&#123;        cout&lt;&lt;&quot;impossible\n&quot;;        return ;    &#125;    if(n==2)&#123;        cout&lt;&lt;&quot;1 0\n&quot;;        return;    &#125;    if(n==3)&#123;        cout&lt;&lt;&quot;1 0 2\n&quot;;        return ;    &#125;    a[0]=1;    a[1]=0;    a[2]=2;    for(int i=3;i&lt;n;i++)&#123;        a[i]=i;        if(i%4==0)&#123;            swap(a[i-1],a[i]);        &#125;    &#125;    for(int i=0;i&lt;n;i++)&#123;        cout&lt;&lt;a[i]&lt;&lt;&#x27; &#x27;;    &#125;    cout&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
 
 18.唯一分解定理for (int i = 2; i &lt;= x / i; ++i) &#123;        // 如果不能整除直接跳过        if (x % i) continue;                // 如果可以整除，那么必然是一个质因子（从小到大枚举的特性决定）        int cnt = 0;        // 一直除，直到除干净        while (x % i == 0) cnt++, x /= i;        v.push_back(&#123;i, cnt&#125;);    &#125;        // 如果x大于1，说明x本身就是一个质数    if (x &gt; 1) v.push_back(&#123;x, 1&#125;);        // 输出所有质因数及其对应的指数    for (const auto&amp; i : v) cout &lt;&lt; i.first &lt;&lt; &#x27; &#x27; &lt;&lt; i.second &lt;&lt; &#x27;\n&#x27;; 因数个数的寻找与一些数学谜题息息相关。现在小编为大家分享一下自我研究出的通过分解质因数寻找因数个数的方法。首先讲一个数分解质因数，如果有相同的质因数就整理成幂次方的形式。将结果的指数加一，再将此结果相乘得到其因数个数。举例：72，用列举法不易找出其因数个数。而72＝2×2×2×3×3＝2³×3²，分别将指数3,2加一变成4,3，4×3＝12个。列举证明1,2,3,4,6,8,9,12,18,24,36,72共12个因数。
+
+19.搜索[P1219 USACO1.5] 八皇后 Checker Challenge - 洛谷
+//无敌暴力,遗憾超时//用brr来辅助进行对角线是否有相同元素的查询//第一次brr辅助查询右下角是否有重叠//第二次brr辅助查询左下角是否有重叠#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e6 + 5;int arr[15][15],brr[15][15],n,ans;deque&lt;int&gt;st;bool check()&#123;  for(int i=1;i&lt;=n;i++)&#123;    for(int j=1;j&lt;=n;j++)&#123;      brr[i][j]=arr[i][j];    &#125;  &#125;  for(int i=1;i&lt;=n;i++)&#123;    int sum=0;    for(int j=1;j&lt;=n;j++)&#123;      sum+=brr[j][i];    &#125;    if(sum!=1)return false;  &#125;  for(int i=1;i&lt;=n;i++)&#123;    for(int j=1;j&lt;=n;j++)&#123;      if(brr[i][j]==1)&#123;        if(i+1&gt;n||j+1&gt;n)&#123;continue;&#125;        if(brr[i+1][j+1]==1)&#123;          return false;        &#125;        brr[i+1][j+1]=1;      &#125;    &#125;  &#125;    for(int i=1;i&lt;=n;i++)&#123;      for(int j=1;j&lt;=n;j++)&#123;        brr[i][j]=arr[i][j];      &#125;    &#125;    for(int i=1;i&lt;=n;i++)&#123;      for(int j=1;j&lt;=n;j++)&#123;        if(brr[i][j]==1)&#123;          if(i+1&gt;n||j-1&lt;1)&#123;continue;&#125;          if(brr[i+1][j-1]==1)&#123;            return false;          &#125;          brr[i+1][j-1]=1;      &#125;    &#125;  &#125;  return true;&#125;void dfs(int x, int y)&#123;    if(x==n)&#123;      if(check())&#123;        ans++;        if(ans&gt;3)return ;        for(auto it:st)&#123;          cout&lt;&lt;it&lt;&lt;&quot; &quot;;        &#125;        cout&lt;&lt;&#x27;\n&#x27;;      &#125;      return ;    &#125;    for(int i=1;i&lt;=n;i++)&#123;      arr[x+1][i]=1;      st.push_back(i);      dfs(x+1,i);      arr[x+1][i]=0;      st.pop_back();    &#125;&#125;void solve()&#123;    cin&gt;&gt;n;    for(int i=1;i&lt;=n;i++)&#123;      arr[1][i]=1;      st.push_back(i);      dfs(1,i);      arr[1][i]=0;      st.pop_back();    &#125;    cout&lt;&lt;ans&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+直接用vis1和vis2对斜对角线上的元素是否有重叠进行标记
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e6 + 5;int arr[15][15],brr[15][15],n,ans;deque&lt;int&gt;st;int vis[15],vis1[35],vis2[35];void dfs(int x, int y)&#123;    if(x==n)&#123;        ans++;        if(ans&gt;3)return ;        for(auto it:st)&#123;          cout&lt;&lt;it&lt;&lt;&quot; &quot;;        &#125;        cout&lt;&lt;&#x27;\n&#x27;;      return ;    &#125;        for(int i=1;i&lt;=n;i++)&#123;      if(vis[i])&#123;continue;&#125;      if(vis1[i-(x+1)+n])&#123;continue;&#125;      if(vis2[i+x+1])&#123;continue;&#125;      arr[x+1][i]=1;      vis[i]=1;      vis1[i-(x+1)+n]=1;      vis2[i+x+1]=1;      st.push_back(i);      dfs(x+1,i);      arr[x+1][i]=0;      vis[i]=0;      st.pop_back();      vis1[i-(x+1)+n]=0;      vis2[i+x+1]=0;    &#125;&#125;void solve()&#123;    cin&gt;&gt;n;    for(int i=1;i&lt;=n;i++)&#123;      arr[1][i]=1;      vis[i]=1;      st.push_back(i);      vis1[i-1+n]=1;      vis2[i+1]=1;      dfs(1,i);      arr[1][i]=0;      st.pop_back();      vis[i]=0;      vis1[i-1+n]=0;      vis2[i+1]=0;    &#125;    cout&lt;&lt;ans&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+
 
 math位运算[P5657 CSP-S2019] 格雷码 - 洛谷打表找规律
 #include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e6 + 5;vector&lt;string&gt; digui(int n)&#123;    if(n==1)&#123;        vector&lt;string&gt;ans;        ans.push_back(&quot;0&quot;);        ans.push_back(&quot;1&quot;);        return ans;    &#125;    vector&lt;string&gt;temp;    temp=digui(n-1);    vector&lt;string&gt;res;    for(int i=0;i&lt;temp.size();i++)&#123;        res.push_back(&quot;0&quot;+temp[i]);    &#125;    for(int i=temp.size()-1;i&gt;=0;i--)&#123;        res.push_back(&quot;1&quot;+temp[i]);    &#125;    return res;&#125;void solve()&#123;    int n;    cin&gt;&gt;n;    vector&lt;string&gt;ans=digui(n);    for(int i=0;i&lt;ans.size();i++)&#123;        cout&lt;&lt;ans[i]&lt;&lt;&#x27; &#x27;;    &#125;    cout&lt;&lt;endl;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
@@ -570,6 +457,425 @@ P5535 【XR-3】小道消息 - 洛谷
 质因数分解(最朴素的算法)vector&lt;int&gt; result;void breakdown(int n)&#123;    for(int i=2;i*i&lt;=n;i++)&#123;        if(n%i==0)&#123;            while(n%i==0)n/=i;            result.push_back(i);        &#125;    &#125;    if(n!=1)&#123;        result.push_back(n);    &#125;&#125;
 
 Pollard_Rho算法(找到数x的一个平凡因子)以下配合找到数x的最大质因子ll max_factor, n;ll gcd(ll a, ll b) &#123;  if (b == 0) return a;  return gcd(b, a % b);&#125;ll Pollard_Rho(ll x) &#123;  ll s = 0, t = 0;  ll c = (ll)rand() % (x - 1) + 1;  int step = 0, goal = 1;  ll val = 1;  for (goal = 1;; goal *= 2, s = t, val = 1) &#123;  // 倍增优化    for (step = 1; step &lt;= goal; ++step) &#123;      t = (bmul(t, t, x) + c) % x;      val = bmul(val, abs(t - s), x);      if ((step % 127) == 0) &#123;        ll d = gcd(val, x);        if (d &gt; 1) return d;      &#125;    &#125;    ll d = gcd(val, x);    if (d &gt; 1) return d;  &#125;&#125;
+
+数学期望[P8774 蓝桥杯 2022 省 A] 爬树的甲壳虫 - 洛谷
+期望题
+
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e5 + 5,mod=998244353;int f[N];int quick(int a,int b)&#123;    int res=1;    while(b)&#123;        if(b&amp;1)res=res*a%mod;        a=a*a%mod;        b&gt;&gt;=1;    &#125;    return res%mod;&#125;void solve()&#123;    int n;    cin&gt;&gt;n;    for(int i=1;i&lt;=n;i++)&#123;        int x,y;        cin&gt;&gt;x&gt;&gt;y;        f[i]=((f[i-1]+1)%mod*((y%mod)*quick(y-x,mod-2)%mod)%mod)%mod;    &#125;    cout&lt;&lt;f[n]&lt;&lt;endl;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+
+
+ AtCoder Link
+AT_abc360_e Random Swaps of Balls - 洛谷
+
+注意减法的同余原理
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e5 + 5,mod=998244353;int f[N];int quick(int a,int b)&#123;    int res=1;    while(b)&#123;        if(b&amp;1)res=res*a%mod;        a=a*a%mod;        b&gt;&gt;=1;    &#125;    return res%mod;&#125;void solve()&#123;    int n,k;    cin&gt;&gt;n&gt;&gt;k;    f[0]=1;    for(int i=1;i&lt;=k;i++)&#123;        f[i]=(f[i-1]*((n-1)*(n-1)%mod+1)%mod*quick(n*n%mod,mod-2)%mod+(2*quick(n*n%mod,mod-2)*(n*(n+1)/2%mod-f[i-1]%mod+mod)%mod)%mod)%mod;    &#125;    cout&lt;&lt;f[k]&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+]]></content>
+  </entry>
+  <entry>
+    <title>补题</title>
+    <url>/second/post/b8f1496f.html</url>
+    <content><![CDATA[2025.9.28D-小红的好数对_牛客周赛 Round 111
+解题思路:
+巧妙枚举
+a*10^len(b)+b%11&#x3D;0;
+-&gt;
+b%11&#x3D;-a*10^len(b);
+
+[!IMPORTANT]
+&#x2F;&#x2F;减法取模(A - B) % mod &#x3D;((A % mod) - (B % mod) +mod) % mod
+
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 2e5 + 5;int a[N],sz[N];int p[15];int f[15][11];void init()&#123;    p[0]=1;    for(int i=1;i&lt;=11;i++)&#123;        p[i]=(p[i-1]*10)%11;    &#125;&#125;void solve()&#123;    int n,sum=0;    cin&gt;&gt;n;    for(int i=1;i&lt;=n;i++)&#123;        cin&gt;&gt;a[i];        sz[i]=to_string(a[i]).size();        f[sz[i]][a[i]%11]++;    &#125;    for(int i=1;i&lt;=n;i++)&#123;        for(int j=1;j&lt;=11;j++)&#123;            int t=(-a[i]*p[j]%11+11)%11;            sum+=f[j][t];        &#125;        if((-a[i]*p[sz[i]]%11+11)%11==a[i]%11)sum--;    &#125;    cout&lt;&lt;sum&lt;&lt;&#x27;\n&#x27;;    &#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    init();    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+
+
+E-小芳的排列构造_牛客周赛 Round 111
+当时我的难点是不知道如何凑k&#x3D;k-3*n-1,(我采用的是从小到大凑,但在大脑中进行模拟时出现了混乱)
+答案给出的是从大往小的凑,通过标记对进行凑k的数进行标记
+
+[!CAUTION]
+
+大数优先的优势：
+较大的 i 能提供更多的逆序对贡献（一次选择可减少更多 k 值）
+先选大数可以避免 “小数占用位置导致大数无法选择” 的问题
+能确保在 k 值较大时，用最少的选择次数凑够目标值
+
+
+
+
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 2e5 + 5;int vis[N];void solve()&#123;    int n,k;    cin&gt;&gt;n&gt;&gt;k;    if(n==1&amp;&amp;k==2)&#123;        cout&lt;&lt;1&lt;&lt;&#x27;\n&#x27;;        return;    &#125;    k-=(3*n-1);    vector&lt;int&gt;vec;    for(int i=n-2;i&gt;=1;i--)&#123;        if(k&gt;=i)&#123;            k-=i;            vis[i]=1;            vec.push_back(i);        &#125;        if(k&lt;=0)break;    &#125;    if(k!=0)&#123;        cout&lt;&lt;-1&lt;&lt;&#x27;\n&#x27;;        return;    &#125;    for(int i=vec.size()-1;i&gt;=0;i--)&#123;        cout&lt;&lt;vec[i]&lt;&lt;&#x27; &#x27;;    &#125;    cout&lt;&lt;n-1&lt;&lt;&#x27; &#x27;;    for(int i=1;i&lt;=n-2;i++)&#123;        if(!vis[i])cout&lt;&lt;i&lt;&lt;&#x27; &#x27;;    &#125;    cout&lt;&lt;n&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;//     cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+F-小红的排列构造_牛客周赛 Round 111
+&#x2F;&#x2F;构造题
+&#x2F;&#x2F;先a[i]和a[n-i+1]交换
+&#x2F;&#x2F;在从a[i]依次往后交换
+&#x2F;&#x2F;因为发现了实施这种方案的最多交换次数是n-1,再交换一次会使得其中一个数归为
+&#x2F;&#x2F;题解使用位运算
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 2e5 + 5;int a[N];void solve()&#123;    int n,k;    cin&gt;&gt;n&gt;&gt;k;    if((n+1)/2&gt;k||k&gt;n-1)&#123;        cout&lt;&lt;-1&lt;&lt;&#x27;\n&#x27;;        return;    &#125;    for(int i=1;i&lt;=n;i++)a[i]=i;    for(int i=1;i&lt;=n/2;i++)&#123;        int t=a[i];        a[i]=a[n-i+1];        a[n-i+1]=t;    &#125;    if(n%2!=0)&#123;        int t=a[n/2];        a[n/2]=a[n/2+1];        a[n/2+1]=t;        k--;    &#125;    k-=n/2;    int i=1,flag=1;    while(k--)&#123;        if(i+1&gt;n)&#123;            flag=0;            break;        &#125;        int t=a[i];        a[i]=a[i+1];        a[i+1]=t;        i++;    &#125;    if(flag==0)&#123;        cout&lt;&lt;-1&lt;&lt;&#x27;\n&#x27;;        return;    &#125;    for(int i=1;i&lt;=n;i++)&#123;        cout&lt;&lt;a[i]&lt;&lt;&#x27; &#x27;;    &#125;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;//     cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+
+
+2025.10.7D-Digital Pairing_牛客周赛 Round 112
+&#x2F;&#x2F;在保留前面结果的同时,进行假设如果,假设成立则该位有1
+&#x2F;&#x2F;新知识:如何在某数的某一位置1
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 4e5 + 5;void solve()&#123;    int n;    cin&gt;&gt;n;    vector&lt;int&gt;vec(2*n+1);    for(int i=1;i&lt;=2*n;i++)&#123;        cin&gt;&gt;vec[i];    &#125;    int ans=0;    for(int i=31;i&gt;=0;i--)&#123;        int cnt=0,cand=ans|(1&lt;&lt;i);        for(int j=1;j&lt;=2*n;j++)&#123;            if((cand&amp;vec[j])==cand)cnt++;        &#125;        if(cnt&gt;=n)ans=cand;    &#125;    cout&lt;&lt;ans&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+
+
+E-Beautiful Sequence_牛客周赛 Round 112
+&#x2F;&#x2F;感觉的数学很好才能做,组合数学功底厚实,找规律的功底厚实
+&#x2F;&#x2F;1 1 3 4
+2^3+2^2&#x3D;(c(2,0)+c(2,1)+c(2,2))*3
+&#x2F;&#x2F;根据答案改错之后一直错误很可能的原因就是超时
+&#x2F;&#x2F;对2的幂进行预处理
+&#x2F;&#x2F;不用i64也行,long long也行
+#include &lt;bits/stdc++.h&gt;using namespace std;using i64 = int64_t;const i64 inf=0x3f3f3f3f,N = 2e5 + 1,mod=998244353;i64 cnt[N];i64 pw[N];void solve()&#123;    int n;    cin&gt;&gt;n;    memset(cnt,0,sizeof(cnt));    for(int i=1;i&lt;=n;i++)&#123;        int a;        cin&gt;&gt;a;        cnt[a]++;    &#125;    i64 ans=(pw[n]%mod-1%mod+mod)%mod;    for(int i=1;i&lt;=N;i++)&#123;        if(cnt[i])&#123;            int len=cnt[i];            int st=cnt[i];            for(int j=i+i;j&lt;=N;j+=i)&#123;                len+=cnt[j];            &#125;            for(int j=1;j&lt;=st;j++)&#123;                ans =((ans % mod) - (pw[len-j] % mod) +mod) % mod;            &#125;        &#125;    &#125;    cout&lt;&lt;ans%mod&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    pw[0]=1;    for(int i=1;i&lt;=N;i++)&#123;        pw[i]=(pw[i-1]*2)%mod;    &#125;    cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+F-Bracket Counting_牛客周赛 Round 112
+&#x2F;&#x2F;dp题
+没做
+
+2025.10.13Dashboard - 2022年中国大学生程序设计竞赛女生专场 - Codeforces
+//https://codeforces.com/gym/104081/problem/G#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 5e5 + 5;struct node&#123;    int t,x;&#125;arr[N];bool cmp(node a,node b)&#123;    return a.t&lt;b.t;&#125;void solve()&#123;    int t,n,m,k;    cin&gt;&gt;t&gt;&gt;n&gt;&gt;m&gt;&gt;k;    for(int i=1;i&lt;=m;i++)&#123;        cin&gt;&gt;arr[i].t&gt;&gt;arr[i].x;    &#125;    arr[m+1].t=t;    arr[m+1].x=0;    sort(arr+1,arr+1+m+1,cmp);    int ans=inf,mark=0,s=0,people=0,gap;    for(int i=1;i&lt;=m+1;i++)&#123;//没考虑gap,导致之前的代码结果一致错误        gap=arr[i].t-s-1;        people=people-gap*k;        people=max(people,0ll);        // cout&lt;&lt;i&lt;&lt;&quot;:&quot;&lt;&lt;people&lt;&lt;&#x27; &#x27;;        if(arr[i].x==0&amp;&amp;people!=n)&#123;            cout&lt;&lt;&quot;Wrong Record\n&quot;;            return;        &#125;        people+=arr[i].x;        if(arr[i].x!=0&amp;&amp;arr[i].t&gt;=t)&#123;            int t=(people+1)/k+((people+1)%k!=0);            if(t&lt;=ans)&#123;                mark=arr[i].t;                ans=t;            &#125;        &#125;        people=max(people-k,0ll);        s=arr[i].t;    &#125;    cout&lt;&lt;mark&lt;&lt;&#x27; &#x27;&lt;&lt;ans&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+
+
+再次把题目理解错了,wi的i并不是经过节点的下标,我所需要加入的wi是我所经过的节点个数k的w(i从1到k-1)的和
+用dis[i] [j]表示从1到 i 不包括1所经过的检点个数。
+
+[!NOTE]
+vector v(5); &#x2F;&#x2F; 5个元素，默认值为0 vector v(5, 10); &#x2F;&#x2F; 5个元素，每个元素的值为10
+vector&lt;vector&gt; vv(3, vector(4, 1));
+
+vector&lt;vector&gt;dis(n+1,vector(n+1,inf));  vector双重循环inf可达1e18,但是如果开数组使用memset(dis,inf,sizeof(dis))会出现我目前不知的错误
+//https://codeforces.com/gym/104081/problem/H#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=1e18,N = 500 + 5;int dis[N][N];int W[N];void solve()&#123;    memset(dis,0x3f3f3f3f,sizeof(dis));    int n,m;    cin&gt;&gt;n&gt;&gt;m;    vector&lt;vector&lt;pair&lt;int,int&gt;&gt; &gt;arr(n+1);    for(int i=0;i&lt;m;i++)&#123;        int u,v,w;        cin&gt;&gt;u&gt;&gt;v&gt;&gt;w;        arr[u].push_back(&#123;v,w&#125;);        arr[v].push_back(&#123;u,w&#125;);    &#125;    dis[1][0]=0;    for(int k=0;k&lt;n-1;k++)&#123;        for(int i=1;i&lt;=n;i++)&#123;            for(auto [v,w]:arr[i])&#123;                // cout&lt;&lt;dis[v][k+1]&lt;&lt;&quot; &quot;&lt;&lt;dis[i][k]+w&lt;&lt;endl;                dis[v][k+1]=min(dis[v][k+1],dis[i][k]+w);                            &#125;        &#125;    &#125;    int q;    cin&gt;&gt;q;    while(q--)&#123;        int t;        cin&gt;&gt;t;        memset(W,0,sizeof(W));        for(int i=1;i&lt;=n-1;i++)&#123;            int a;            cin&gt;&gt;a;            W[i]=a+W[i-1];        &#125;        int ans=inf;        for(int i=1;i&lt;=n-1;i++)&#123;            ans=min(ans,W[i]+dis[t][i]);        &#125;        cout&lt;&lt;ans&lt;&lt;endl;    &#125;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+2025.10.16//https://codeforces.com/gym/105386/problem/A#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 4e5 + 5;struct node&#123;    int r;    vector&lt;int&gt;vec;    int sum=0;    int id;    bool mark=false;//标记一下是否出现-1,减一下枝&#125;;bool cmp(node a,node b)&#123;    return a.r&lt;b.r;&#125;bool cmp1(node a,node b)&#123;    return a.id&lt;b.id;&#125;void solve()&#123;    int n,m,k;    cin&gt;&gt;n&gt;&gt;m&gt;&gt;k;    vector&lt;node&gt;arr(n+5);    for(int i=1;i&lt;=n;i++)&#123;        cin&gt;&gt;arr[i].r;        arr[i].id=i;        for(int j=1;j&lt;=m;j++)&#123;            int x;            cin&gt;&gt;x;            arr[i].vec.push_back(x);            if(x!=-1)arr[i].sum+=x;            else arr[i].mark=true;        &#125;    &#125;    int las=-1;//这里非常关键    //当第一次碰到遇到有-1的时候,如果设las=0,则t=0+1    sort(arr.begin()+1,arr.begin()+1+n,cmp);    for(int i=1;i&lt;=n;i++)&#123;        int j=i;        while(j+1&lt;=n&amp;&amp;arr[j+1].r==arr[j].r)j++;        //具有相同星级的队伍,不更新las        for(int u=i;u&lt;=j;u++)&#123;            if(arr[u].mark==false)&#123;                if(arr[u].sum&lt;=las)&#123;                    cout&lt;&lt;&quot;No\n&quot;;                    return ;                &#125;                continue;            &#125;            int t=max(las+1-arr[u].sum,0ll);            for(int o=0;o&lt;m;o++)&#123;                if(arr[u].vec[o]==-1)&#123;                    int temp=min(k,t);                    arr[u].vec[o]=temp;                    arr[u].sum+=temp;                    t-=temp;                &#125;            &#125;            if(t&gt;0)&#123;                cout&lt;&lt;&quot;No\n&quot;;                return;            &#125;        &#125;        for(int u=i;u&lt;=j;u++)las=max(las,arr[u].sum);        i=j;    &#125;        cout&lt;&lt;&quot;Yes\n&quot;;        sort(arr.begin()+1,arr.begin()+1+n,cmp1);        for(int i=1;i&lt;=n;i++)&#123;            for(int j=0;j&lt;m;j++)&#123;                cout&lt;&lt;arr[i].vec[j]&lt;&lt;&quot; &quot;;            &#125;            cout&lt;&lt;&quot;\n&quot;;        &#125;    &#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+2025.10.182023年ns
+//对于上下叠加//一块运动的处理https://codeforces.com/gym/104725/problem/A#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e6 + 5;void solve()&#123;    int n=12;    vector&lt;int&gt;v[10];    v[2].push_back(1);    v[3].push_back(2);    v[4].push_back(3);    int mp[4];    mp[1]=2;    mp[2]=3;    mp[3]=4;    while(n--)&#123;        int a,b;        cin&gt;&gt;a&gt;&gt;b;        int now=mp[a];        int nex=mp[a]+b;        int len=v[now].size();        int pos;        for(int j=0;j&lt;len;j++)&#123;            if(v[now][j]==a)&#123;pos=j;break;&#125;        &#125;        for(int j=pos;j&lt;len;j++)&#123;            mp[v[now][j]]=nex;            v[nex].push_back(v[now][j]);        &#125;        for(int j=pos;j&lt;len;j++)&#123;            v[now].pop_back();        &#125;    &#125;    if(v[9].size()==3)&#123;        cout&lt;&lt;&quot;Y&quot;&lt;&lt;endl;    &#125;else&#123;        cout&lt;&lt;&quot;N&quot;&lt;&lt;endl;    &#125;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+
+
+从1开始,依次将Lis长度相同为i的序号存入cnt[i],
+//https://codeforces.com/gym/104725/problem/F#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e6 + 5;int n;vector&lt;int&gt;cnt[N],ans(N+1),arr(N+1);void solve()&#123;    int Max=0;    cin&gt;&gt;n;    bool flag=false;    for(int i=1;i&lt;=n;i++)&#123;        cin&gt;&gt;arr[i];        if(arr[i]&gt;Max+1)&#123;            flag=true;        &#125;else&#123;           Max=max(Max,arr[i]);        &#125;         cnt[arr[i]].push_back(i);    &#125;    if(flag)&#123;        cout&lt;&lt;&quot;-1\n&quot;;        return;    &#125;    int num=1;    for(int i=1;i&lt;=n;i++)&#123;        for(int j=cnt[i].size()-1;j&gt;=0;j--)&#123;            ans[cnt[i][j]]=num++;        &#125;        if(cnt[i].empty())&#123;            break;        &#125;    &#125;    for(int i=1;i&lt;=n;i++)&#123;        cout&lt;&lt;ans[i]&lt;&lt;&quot; &quot;;    &#125;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+
+
+2025.10.19Problem - F - Codeforces
+以短竖线为讨论的基点
+字母只可能为’a’,’b’
+原因:短竖线两侧只可能是两个相同的字母或是不同的字母,
+若以未知字母作为讨论基点则情况可能更加复杂,易出错
+逻辑:若i处是’|’,box[i]&gt;1则说明’|’两侧字母相同,box[i]&lt;&#x3D;1则说明’|’两侧字母不相同
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 2e6 + 10;char arr[N];int box[N];void solve()&#123;    int n;    cin&gt;&gt;n;    arr[0]=&#x27;&amp;&#x27;;    arr[2]=&#x27;a&#x27;;    for(int i=0;i&lt;2*n+2;i++)cin&gt;&gt;box[i];    for(int i=1;i&lt;2*n+2;i++)&#123;        if(i%2==1)&#123;            arr[i]=&#x27;|&#x27;;            if(box[i]&gt;1)&#123;                arr[i+1]=arr[i-1];            &#125;else&#123;                if(arr[i-1]==&#x27;a&#x27;)&#123;                    arr[i+1]=&#x27;b&#x27;;                &#125;else&#123;                    arr[i+1]=&#x27;a&#x27;;                &#125;            &#125;        &#125;    &#125;    string s=&quot;&quot;;    for(int i=0;i&lt;2*n+2;i++)&#123;        if(arr[i]==&#x27;a&#x27;||arr[i]==&#x27;b&#x27;)s+=arr[i];    &#125;    cout&lt;&lt;s&lt;&lt;endl;    &#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+Problem - K - Codeforces
+除1以外的人,胜利的概率是一样的,以2号为例
+若1掷出x,则2一次性胜利的概率为(m-x)&#x2F;m;
+若前i-1次都掷出x,则第i次胜利的概率为1&#x2F;m^(i-1)*(m-x)&#x2F;m;
+则2胜利的概率为求和i从1到无穷大(m-x)&#x2F;m^i;
+转化为对1&#x2F;m^i   i趋近于无穷的极限,得1&#x2F;(m-1);
+又因为其他(n-1)个人和2一样故1输的概率就为()(m-x)&#x2F;(m-1))^n;
+#include &lt;bits/stdc++.h&gt;using namespace std;using LL=long long;const int inf=0x3f3f3f3f,N = 1e6 + 5;LL mod=998244353;LL qkpow(LL a,LL p)&#123;	LL t=1,tt=a%mod;	while(p)	&#123;		if(p&amp;1)t=t*tt%mod;		tt=tt*tt%mod;		p&gt;&gt;=1;	&#125;	return t;&#125;LL getInv(LL a)&#123;	return qkpow(a,mod-2);&#125;void solve()&#123;    int n,m;	cin&gt;&gt;n&gt;&gt;m;	for(int i=1;i&lt;=m;i++)&#123;		cout&lt;&lt;((qkpow((m-i),n)%mod*getInv(qkpow((m-1),n)%mod)%mod)%mod)&lt;&lt;&#x27; &#x27;;	&#125;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+2025.10.24Problem - J - Codeforces
+这道题的关键是要理解同构
+如果我们每次的操作对象是叶子结点,得到的新图实际上与上个图是同构的,这个我们很容易想明白。
+也就是说我们要得到一个与上一个图不同构的图我们需要操作非叶子节点,然后把它变成叶子节点,显然新得到的图与上一个图不同构,并且我们每次操作只能使得一个非叶子结点变成叶子结点。
+所以最后的赢家与非叶子节点的数量的奇偶性有关,(n&lt;&#x3D;3是永远是Bob赢)为奇数则Bob,为偶数则Alice
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e6 + 5;int arr[55];void solve()&#123;    int n;    cin&gt;&gt;n;    for(int i=1;i&lt;=n-1;i++)    &#123;        int a,b;        cin&gt;&gt;a&gt;&gt;b;        arr[a]++;        arr[b]++;    &#125;    if(n&lt;=3)&#123;        cout&lt;&lt;&quot;Bob\n&quot;;        return ;    &#125;    int cnt=0;    for(int i=1;i&lt;=n;i++)&#123;        if(arr[i]&gt;1)cnt++;    &#125;    cout&lt;&lt;(cnt%2==0?&quot;Alice&quot;:&quot;Bob&quot;)&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+2025.10.27Problem - E - Codeforces
+一开始就想到要用前缀这方面的内容,虽然想法并不完善
+我这道题没意识到的点:
+
+x,y可以分别处理,每处理一次都只是一次单方向处理,最后对结果直接*2输出
+
+如果对x,y一起处理就会麻烦很多,前缀和和后缀和很可能都不会派上太大的用处
+
+ans+&#x3D;points[i].first*i- pre[i-1];   前缀加了几个数就用几个points[i].first减
+
+
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e3 + 5;int pre[N*N];void solve()&#123;    int n,m;    cin&gt;&gt;n&gt;&gt;m;    map&lt;int,vector&lt; pair&lt;int,int&gt;&gt;&gt; mp;       for(int i=1;i&lt;=n;i++)&#123;        for(int j=1;j&lt;=m;j++)&#123;            int x;            cin&gt;&gt;x;            mp[x].push_back(&#123;i,j&#125;);        &#125;    &#125;    int ans=0;    for(auto [val,points]:mp)&#123;        int len=points.size();        if(len&lt;=1)continue;        pre[0]=points[0].first;        for(int i=1;i&lt;len;i++)&#123;            pre[i]=pre[i-1]+points[i].first;            ans+=points[i].first*i- pre[i-1];        &#125;        sort(points.begin(),points.end(),[&amp;](auto a,auto b)&#123;return a.second&lt;b.second;&#125;);        pre[0]=points[0].second;        for(int i=1;i&lt;len;i++)&#123;            pre[i]=pre[i-1]+points[i].second;            ans+=points[i].second*i- pre[i-1];        &#125;    &#125;    cout&lt;&lt;ans*2&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+Problem - J - Codeforces
+思想:枚举
+目标:最大和次大的权值和最小
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=2e18,N = 3e5 + 5,M = 1e6+5;struct node&#123;    int u,v,w;&#125; arr[M];//记录原始数据struct edge&#123;    int to,next,w;&#125;e[M&lt;&lt;1];//记录边,e[i]  i-&gt;to 从i点到to点,用next记录下一个节点,采用的是头插法,最初的head[i]值为0void add(int u,int v,int w)&#123;    e[++tot]=&#123;v,head[u],w&#125;;    head[u]=tot;&#125;int n,m,head[N],tot,vis[N];void dijkstra(int s,int *dis)&#123;    priority_queue&lt;pair&lt;int,int&gt;,vector&lt;pair&lt;int,int&gt;&gt;,greater&lt;pair&lt;int,int&gt;&gt;&gt;q;//小根堆    q.push(&#123;0,s&#125;);    for(int i=1;i&lt;=n;i++)&#123;dis[i]=inf;vis[i]=0;&#125;    dis[s]=0;    while(!q.empty())&#123;        auto [d,u]=q.top();        q.pop();        if(vis[u])continue;        vis[u]=1;        for(int i=head[u];i;i=e[i].next)&#123;            int v=e[i].to;            int w=max(d,e[i].w);            //s-&gt;u-&gt;v  w为这两段中最大的            if(dis[v]&gt;w)&#123;//我们寻找到s-&gt;v中最小的                dis[v]=w;                q.push(&#123;w,v&#125;);            &#125;        &#125;    &#125;&#125;int dis1[N],dis2[N];void solve()&#123;    cin&gt;&gt;n&gt;&gt;m;    for(int i=1;i&lt;=n;i++)head[i]=0;    for(int i=1;i&lt;=m;i++)&#123;        cin&gt;&gt;arr[i].u&gt;&gt;arr[i].v&gt;&gt;arr[i].w;        add(arr[i].u,arr[i].v,arr[i].w);        add(arr[i].v,arr[i].u,arr[i].w);    &#125;    dijkstra(1,dis1);    dijkstra(n,dis2);    //方便后续将路径分为 1-&gt;u-&gt;v-&gt;n    //1-&gt;v-&gt;u-&gt;n;    int ans=inf;    for(int i=1;i&lt;=m;i++)&#123;        int u=arr[i].u,v=arr[i].v,w=arr[i].w;        int temp=min(max(dis1[u],dis2[v]),max(dis1[v],dis2[u]));        if(temp&lt;=w)&#123;//若w作为最大值则进入,枚举了每个w能不能作为最大值            ans=min(ans,w+temp);        &#125;    &#125;    cout&lt;&lt;ans&lt;&lt;endl;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+2025.11.1Problem - C - Codeforces
+首先对子序列(子数组)理解错误,其中的元素在原数组中并不需要连续
+思路:判断区间的合法性
+后缀和+枚举
+所以我们只要保证(a[r])相对于其他与他相同的数是作为最后一个数出现在原数组中
+然后从前枚举,保证(a[l])相对于其他与他相同的数作为第一个出现在原数组中
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e6 + 5;int arr[N],r[N];map&lt;int,bool&gt;p,q;void solve()&#123;    int n;    cin&gt;&gt;n;    p.clear();q.clear();    r[n+1]=0;    for(int i=1;i&lt;=n;i++)&#123;        cin&gt;&gt;arr[i];    &#125;    for(int i=n;i&gt;=1;i--)&#123;        if(!q[arr[i]])&#123;            r[i]=r[i+1]+1;            q[arr[i]]=1;        &#125;else &#123;            r[i]=r[i+1];        &#125;    &#125;    int ans=0;    for(int i=1;i&lt;=n;i++)&#123;        if(!p[arr[i]])&#123;            ans+=r[i];            p[arr[i]]=1;        &#125;    &#125;    cout&lt;&lt;ans&lt;&lt;endl;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+
+
+Problem - D1 - Codeforces
+我觉得这道题的难点在于题目理解
+思路:
+贪心+二分
+首先考虑暴力,然后我们发现时间复杂度为O(n^2),故考虑优化,自然而然想到二分
+每次操作,删除a中最大的,删除b中最小的
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e5 + 5;int a[N],b[N],n;bool check(int ans)&#123;    for(int i=1;i&lt;=n-ans;i++)&#123;        if(a[i]&gt;=b[i+ans])&#123;            return false;        &#125;    &#125;    return true;    &#125;void solve()&#123;    int m;    cin&gt;&gt;n&gt;&gt;m;    a[1]=1;    for(int i=2;i&lt;=n;i++)&#123;        cin&gt;&gt;a[i];    &#125;    for(int i=1;i&lt;=n;i++)&#123;        cin&gt;&gt;b[i];    &#125;    sort(a+1,a+n+1);    sort(b+1,b+n+1);    int l=0,r=n;    while(l&lt;=r)&#123;        int mid=(r-l)/2+l;        if(check(mid))&#123;            r=mid-1;        &#125;else &#123;            l=mid+1;        &#125;    &#125;    cout&lt;&lt;l&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+2025.11.3思路:从nx&#x3D;mx就可以知道,x&#x3D;0
+当为D时,代表本格的这一行除本格以外是已知的,故由0-本格其他值的和即可得本格的值
+当为R时同理
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e3 + 5;int arr[N][N];int sum1[N];int sum2[N];void solve()&#123;    int n,m;    cin&gt;&gt;n&gt;&gt;m;    string s;    cin&gt;&gt;s;    memset(sum1,0,sizeof sum1);    memset(sum2,0,sizeof sum2);    for(int i=1;i&lt;=n;i++)&#123;        for(int j=1;j&lt;=m;j++)&#123;            cin&gt;&gt;arr[i][j];            sum1[i]+=arr[i][j];            sum2[j]+=arr[i][j];        &#125;    &#125;    int x=1,y=1;    for(int i=0;i&lt;s.length();i++)&#123;        if(s[i]==&#x27;D&#x27;)&#123;            arr[x][y]=(-sum1[x]);            sum2[y]-=sum1[x];            x=x+1;        &#125;else &#123;            arr[x][y]=(-sum2[y]);            sum1[x]-=sum2[y];            y=y+1;        &#125;    &#125;    arr[x][y]=0-sum1[x];    for(int i=1;i&lt;=n;i++)&#123;        for(int j=1;j&lt;=m;j++)&#123;            cout&lt;&lt;arr[i][j]&lt;&lt;&quot; &quot;;        &#125;        cout&lt;&lt;endl;    &#125;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+2025.11.5Problem - I - Codeforces
+&#x2F;&#x2F;从左到右,若遇到arr[i]!&#x3D;i,则从右往左找到第一个arr[r]&lt;arr[l],对于这部分区间进行排序(找到对l的最大区间)
+贪心的正确性:
+对于每一个数我们都应把它放置在其对应的下标的位置上,
+所以我们以arr[i]是不是等于i来作为标准判断,每进行一次操作我们可以保证原先的arr[l]和arr[r]在正确的位置,即arr[l]到arr[r]之间会被排好,那么我们当然应该使得l到r之间包含更多数,这样才可能使得更多的数被排好,所以我们选择最右边第一个小于arr[r]的数
+证明贪心:
+归纳假设
+证明 “第 k+1 步的局部最优选择” 能延续前 k 步的最优性，即加入第 k+1 步选择后，仍属于某个全局最优解。
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e2 + 5;int arr[N];void solve()&#123;   int n;   cin&gt;&gt;n;   for(int i=1;i&lt;=n;i++)&#123;       cin&gt;&gt;arr[i];    &#125;   int l=1,r=n,ans=0;   vector&lt;pair&lt;int,int&gt;&gt;res;   while(l&lt;=r)&#123;       if(arr[l]==l)&#123;l++;continue;&#125;       if(arr[l]&gt;arr[r])&#123;            ans++;            res.push_back(&#123;l,r&#125;);            sort(arr+l,arr+r+1);            r=n;        &#125;else&#123;            r--;        &#125;   &#125;   cout&lt;&lt;ans&lt;&lt;endl;   for(auto [x,y]:res)&#123;       cout&lt;&lt;x&lt;&lt;&quot; &quot;&lt;&lt;y&lt;&lt;endl;   &#125;  &#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+2025.11.86.黑白棋 - 蓝桥云课
+暴力加剪枝
+#include &lt;bits/stdc++.h&gt;using namespace std;bool check(int arr[][6]) &#123;    unordered_set&lt;string&gt; s;    // 检查每一行    for(int i = 0; i &lt; 6; i++) &#123;        int count0 = 0, count1 = 0;        string temp = &quot;&quot;;        int consecutive = 1;                for(int j = 0; j &lt; 6; j++) &#123;            temp += to_string(arr[i][j]);            if(arr[i][j] == 0) count0++;            else count1++;                        if(j &gt; 0 &amp;&amp; arr[i][j] == arr[i][j-1]) &#123;                consecutive++;                if(consecutive &gt;= 3) return false;            &#125; else &#123;                consecutive = 1;            &#125;        &#125;                if(count0 != count1) return false;        s.insert(temp);    &#125;        if(s.size() != 6) return false;    return true;&#125;int arr[6][6];int brr[6][6];bool dfs(int x, int y) &#123;    if(x == 6) &#123;        for(int i = 0; i &lt; 6; i++) &#123;            for(int j = 0; j &lt; 6; j++) &#123;                brr[i][j] = arr[j][i];            &#125;        &#125;        return check(arr) &amp;&amp; check(brr);    &#125;    //如何线性遍历二维数组    int nextX = x;    int nextY = y + 1;    if(nextY == 6) &#123;        nextX = x + 1;        nextY = 0;    &#125;    if(arr[x][y] != -1) return dfs(nextX, nextY);    //0    arr[x][y] = 0;    // 检查当前行是否有连续3个相同的数字,剪枝    bool valid = true;    if(y &gt;= 2) &#123;        if(arr[x][y] == arr[x][y-1] &amp;&amp; arr[x][y] == arr[x][y-2]) &#123;            valid = false;        &#125;    &#125;    if(valid &amp;&amp; dfs(nextX, nextY)) return true;    //1    arr[x][y] = 1;    valid = true;    if(y &gt;= 2) &#123;        if(arr[x][y] == arr[x][y-1] &amp;&amp; arr[x][y] == arr[x][y-2]) &#123;            valid = false;        &#125;    &#125;    if(valid &amp;&amp; dfs(nextX, nextY)) return true;    // 回溯    arr[x][y] = -1;    return false;&#125;int main() &#123;    for(int i = 0; i &lt; 6; i++) &#123;        for(int j = 0; j &lt; 6; j++) &#123;            arr[i][j] = -1;        &#125;    &#125;    arr[0][0] = 1;    arr[0][1] = 0;    arr[0][3] = 0;    arr[1][3] = 0;    arr[2][4] = 0;    arr[2][5] = 0;    arr[4][2] = 1;    arr[4][5] = 1;    arr[5][1] = 0;    arr[5][4] = 1;    if(dfs(0, 0)) &#123;        for(int i = 0; i &lt; 6; i++) &#123;            for(int j = 0; j &lt; 6; j++) &#123;                cout &lt;&lt; arr[i][j] ;            &#125;        &#125;    &#125;     return 0;&#125;
+
+0抽奖 - 蓝桥云课
+&#x2F;&#x2F;简单模拟题,但是算下标的时候有坑
+#include &lt;iostream&gt;#include &lt;algorithm&gt;using namespace std;const int N=1e3+5;int a1[N],a2[N],a3[N];int check(int x,int y,int z)&#123;  if(x==y&amp;&amp;y==z)&#123;    return 200;  &#125;  if(x==y||x==z||y==z)&#123;    return 100;  &#125;  if((x+1)==y&amp;&amp;(y+1)==z)&#123;    return 200;  &#125;  if((max(&#123;x,y,z&#125;)-min(&#123;x,y,z&#125;))==2)&#123;    return 100;  &#125;  return 0;&#125;int main()&#123;  // 请在此输入您的代码  int n,m,pos1=1,pos2=1,pos3=1,ans=0;  cin&gt;&gt;n;  for(int i=1;i&lt;=n;i++)&#123;    cin&gt;&gt;a1[i];  &#125;  for(int i=1;i&lt;=n;i++)&#123;    cin&gt;&gt;a2[i];  &#125;  for(int i=1;i&lt;=n;i++)&#123;    cin&gt;&gt;a3[i];  &#125;  cin&gt;&gt;m;  int num[4];  while(m--)&#123;    for(int i=1;i&lt;=3;i++)&#123;      cin&gt;&gt;num[i];    &#125;    pos1+=num[1];    pos2+=num[2];    pos3+=num[3];    if(pos1&gt;n)&#123;      pos1%=n;      if(pos1==0)pos1=n;    &#125;    if(pos2&gt;n)&#123;      pos2%=n;      if(pos2==0)pos2=n;    &#125;    if(pos3&gt;n)&#123;      pos3%=n;      if(pos3==0)pos3=n;    &#125;    int res1=a1[pos1],res2=a2[pos2],res3=a3[pos3];    ans+=check(res1,res2,res3);  &#125;  cout&lt;&lt;ans&lt;&lt;&#x27;\n&#x27;;  return 0;&#125;
+
+&#x2F;&#x2F;是否下标从0开始可以避免很多坑?
+#include &lt;iostream&gt;#include &lt;algorithm&gt;using namespace std;const int N=1e3+5;int a1[N],a2[N],a3[N];int check(int x,int y,int z)&#123;  if(x==y&amp;&amp;y==z)&#123;    return 200;  &#125;  if(x==y||x==z||y==z)&#123;    return 100;  &#125;  if((x+1)==y&amp;&amp;(y+1)==z)&#123;    return 200;  &#125;  if((max(&#123;x,y,z&#125;)-min(&#123;x,y,z&#125;))==2)&#123;    return 100;  &#125;  return 0;&#125;int main()&#123;  // 请在此输入您的代码  int n,m,pos1=0,pos2=0,pos3=0,ans=0;  cin&gt;&gt;n;  for(int i=0;i&lt;n;i++)&#123;    cin&gt;&gt;a1[i];  &#125;  for(int i=0;i&lt;n;i++)&#123;    cin&gt;&gt;a2[i];  &#125;  for(int i=0;i&lt;n;i++)&#123;    cin&gt;&gt;a3[i];  &#125;  cin&gt;&gt;m;  int num[4];  while(m--)&#123;    for(int i=1;i&lt;=3;i++)&#123;      cin&gt;&gt;num[i];    &#125;    pos1+=num[1];    pos2+=num[2];    pos3+=num[3];    pos1%=n;    pos2%=n;    pos3%=n;    int res1=a1[pos1],res2=a2[pos2],res3=a3[pos3];    ans+=check(res1,res2,res3);  &#125;  cout&lt;&lt;ans&lt;&lt;&#x27;\n&#x27;;  return 0;&#125;
+
+0红黑树 - 蓝桥云课
+打表没找到规律
+#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;int vis[10][10000];int main()&#123;  vis[0][0]=1;  for(int i=1;i&lt;=7;i++)&#123;    int t=1;    for(int j=1;j&lt;=i;j++)&#123;      t*=2;    &#125;    for(int j=0;j&lt;t;j+=2)&#123;      if(vis[i-1][j/2]==1)&#123;        cout&lt;&lt;&quot;10&quot;;        vis[i][j]=1;vis[i][j+1]=0;      &#125;else &#123;        cout&lt;&lt;&quot;01&quot;;        vis[i][j]=0;vis[i][j+1]=1;      &#125;    &#125;    cout&lt;&lt;&#x27;\n&#x27;;  &#125;  return 0;&#125;
+
+&#x2F;&#x2F;然后看到n才30递归层数不多,故采用递归
+&#x2F;&#x2F;k从0开始,这样会省去很多麻烦
+#include &lt;iostream&gt;#include &lt;cmath&gt;using namespace std;bool digui(int n,int k)&#123;  if(n==1&amp;&amp;k==0)&#123;    return true;  &#125;  if(digui(n-1,k/2))&#123;//如果第n行第k个的父节点是红色    if((k/2)*2==k)&#123;//那么其左节点为红色      return true;    &#125;else return false;//右节点为黑色  &#125;else&#123;    if((k/2)*2==k)&#123;      return false;    &#125;else return true;  &#125;&#125;int main()&#123;  // 请在此输入您的代码  int m,n,k;  cin&gt;&gt;m;  while(m--)&#123;    cin&gt;&gt;n&gt;&gt;k;    if(digui(n,k-1))&#123;      cout&lt;&lt;&quot;RED\n&quot;;    &#125;else cout&lt;&lt;&quot;BLACK\n&quot;;  &#125;  return 0;&#125;
+
+0黑客 - 蓝桥云课
+解题思路：求约数 + 组合计数 + 乘法逆元
+
+找出所有的 nn 和 mm：
+输入的数减 22 等于 n×mn×m，设这个数为 NN。试除法求 NN 的约数，就可以找出所有的 n×mn×m。
+那么，需要在输入的数中找出，是否有 nn 和 mm 和两个数。可以在读入数据的时候，用数组 cnt[i]cnt[i] 记录每一个数出现的次数，可以快速找到 nn 和 mm ，以及它们出现的次数；
+
+找出一组 nn 和 mm 之后，如何求方案数：
+将这组 (n,m)(n,m) 走之后，问题就变成：剩下的数放在矩阵中，一共有多少种不同的方案。将矩阵展开成一行，其实就是剩下的数的排列问题，即 N!∏cnt[i]!∏cnt[i]!N!。
+由于结果需要取模，可以先预处理出 1∼N1∼N 的阶乘逆元。
+
+优化：
+
+没有必要每次找到一组 (n,m)(n,m) 之后，就重新求一次删掉一个 nn 和 mm 之后的 N!∏cnt[i]!∏cnt[i]!N!；
+可以先求出所有数的 S&#x3D;N!∏cnt[i]!S&#x3D;∏cnt[i]!N!。找到一组 (n,m)(n,m) 之后，可以先用 SS 乘上cnt[n]!×cnt[m]!cnt[n]!×cnt[m]!，然后再除以 (cnt[n]−1)!×(cnt[m]−1)!(cnt[n]−1)!×(cnt[m]−1)!
+
+
+
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int N=5e5+5,mod=1000000007;int f[N+5],g[N+5],cnt[N+5],n;int quickm(int a,int b)&#123;  int res=1;  while(b)&#123;    if(b&amp;1)&#123;      res=(res%mod*a%mod)%mod;    &#125;    a=(a%mod*a%mod)%mod;    b/=2;  &#125;  return res%mod;&#125;void init()&#123;  f[0]=1;  for(int i=1;i&lt;=N;i++)&#123;    f[i]=(f[i-1]%mod*i%mod)%mod;  &#125;  g[N]=quickm(f[N],mod-2);  for(int i=N-1;i&gt;=0;i--)&#123;    g[i]=((i+1)%mod*g[i+1]%mod)%mod;  &#125;&#125;signed main()&#123;  // 请在此输入您的代码  init();  cin&gt;&gt;n;  int res=0;  for(int i=1,x;i&lt;=n;i++)&#123;    cin&gt;&gt;x;    cnt[x]++;  &#125;  n-=2;  int s=f[n];  for(int i=1;i&lt;N;i++)s=(s%mod*g[cnt[i]]%mod)%mod;  for(int i=1;i&lt;=n/i;i++)&#123;    if(n%i)continue;    int j=n/i;    if(!cnt[i]||!cnt[j])&#123;      continue;    &#125;    if(j==i&amp;&amp;cnt[i]&lt;=1)continue;    if(i==j)&#123;      res=(res%mod+s%mod*f[cnt[i]]%mod*g[cnt[i]-2]%mod)%mod;    &#125;else &#123;      int t=(s%mod*f[cnt[i]]%mod*f[cnt[j]]%mod*g[cnt[i]-1]%mod*g[cnt[j]-1]%mod)%mod;      res=(res%mod+t%mod+t%mod)%mod;    &#125;  &#125;  cout&lt;&lt;res&lt;&lt;&#x27;\n&#x27;;  return 0;&#125;
+
+0地雷阵 - 蓝桥云课
+计算几何
+难点:知道如何表示角
+看官方题解
+#include &lt;iostream&gt;#include &lt;cmath&gt;#include &lt;algorithm&gt;using namespace std;const int N = 1e5 + 10;const double pi2 = asin(1); // pi / 2int n;struct node&#123;    double l, r;&#125;a[N];bool cmp(node&amp; a, node&amp; b)&#123;    return a.l &lt; b.l;&#125;int main()&#123;    cin &gt;&gt; n;    // 计算每一个圆的覆盖区间    for(int i = 1; i &lt;= n; i++)    &#123;        double x, y, r; cin &gt;&gt; x &gt;&gt; y &gt;&gt; r;        double t1 = atan(y / x);        double t2 = asin(r / sqrt(x * x + y * y));        a[i] = &#123;t1 - t2, t1 + t2&#125;;    &#125;    // 合并区间    sort(a + 1, a + 1 + n, cmp);    double sum = 0, l = a[1].l, r = a[1].r;    for(int i = 2; i &lt;= n; i++)    &#123;        if(a[i].l &lt;= r) r = max(r, a[i].r);        else        &#123;            sum += r - l;            l = a[i].l, r = a[i].r;        &#125;    &#125;    sum += r - l;    printf(&quot;%.3lf\n&quot;, 1.0 - sum / pi2);    return 0;&#125;
+
+为什么这份代码不行
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e6 + 5;const double pi=asin(1);pair&lt;double,double&gt; fun(int x,int y,int r)&#123;    return &#123;atan(y/x)-asin(r/sqrt(x*x+y*y)), atan(y/x)+asin(r/sqrt(x*x+y*y))&#125;;&#125;bool cmp(pair&lt;double,double&gt; a,pair&lt;double,double&gt; b)&#123;    return a.first&lt;b.first;&#125;void solve()&#123;    int n;    cin&gt;&gt;n;    vector&lt;pair&lt;double,double&gt;&gt; pos;    for(int i=1;i&lt;=n;i++)&#123;        int x,y,r;        cin&gt;&gt;x&gt;&gt;y&gt;&gt;r;        pair&lt;double,double&gt;temp=fun(x,y,r);        pos.push_back(temp);    &#125;    int len=pos.size();    sort(pos.begin(),pos.end(),cmp);    double l=pos[0].first,r=pos[0].second;    double aans=0;    for(int i=1;i&lt;len;i++)&#123;        if(pos[i].first&lt;=r)&#123;            if(pos[i].second&gt;r)&#123;                r=pos[i].second;            &#125;        &#125;else&#123;            aans+=r-l;            l=pos[i].first,r=pos[i].second;        &#125;    &#125;    aans+=r-l;    cout&lt;&lt;fixed&lt;&lt;setprecision(3)&lt;&lt;(pi-aans)/pi&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+
+
+搜索大法
+2.五子棋对弈 - 蓝桥云课
+未剪枝版
+#include &lt;iostream&gt;using namespace std;int ans;int arr[7][7];bool check()&#123;  int num1=0,num2=0;  for(int i=0;i&lt;5;i++)&#123;    for(int j=0;j&lt;5;j++)&#123;      if(arr[i][j]==0)&#123;        num1++;      &#125;      if(arr[i][j]==1)&#123;        num2++;      &#125;    &#125;  &#125;  if(!(num1==13&amp;&amp;num2==12))return false;  for(int i=0;i&lt;5;i++)&#123;    bool mark=false;    for(int j=0;j&lt;5;j++)&#123;      if(j==0)continue;      if(arr[i][j]==arr[i][j-1])&#123;        continue;      &#125;      mark=true;    &#125;    if(!mark)return false;  &#125;  for(int i=0;i&lt;5;i++)&#123;    bool mark=false;    for(int j=0;j&lt;5;j++)&#123;      if(j==0)continue;      if(arr[j][i]==arr[j-1][i])&#123;        continue;      &#125;      mark=true;    &#125;    if(!mark)return false;  &#125;  bool mark=false;  for(int i=0;i&lt;5;i++)&#123;    if(i==0)continue;    if(arr[i][i]==arr[i-1][i-1])continue;    mark=true;  &#125;  if(!mark)return false;  mark=false;  if(arr[0][4]==arr[1][3]&amp;&amp;arr[1][3]==arr[2][2]&amp;&amp;arr[2][2]==arr[3][1]&amp;&amp;arr[3][1]==arr[4][0])&#123;    mark=true;  &#125;  if(mark)return false;  return true;&#125;void dfs(int x,int y)&#123;  if(x==5)&#123;    if(check())&#123;      ans++;    &#125;    return;  &#125;  int nx=x,ny=y+1;  if(ny&gt;4)&#123;    nx++;    ny=0;  &#125;  arr[x][y]=0;  dfs(nx,ny);  arr[x][y]=1;  dfs(nx,ny);  arr[x][y]=-1;&#125;int main()&#123;  // 请在此输入您的代码  for(int i=0;i&lt;5;i++)&#123;    for(int j=0;j&lt;5;j++)&#123;      arr[i][j]=-1;    &#125;  &#125;  dfs(0,0);  cout&lt;&lt;ans&lt;&lt;&#x27;\n&#x27;;  return 0;&#125;
+
+2025.11.12E-Hash_牛客2025秋季算法编程训练联赛5-基础组
+有点巧妙的贪心
+求哈希（转化为10进制）的时候我们发现它会对每一个（red*26+str[i]-‘a’)取模，但是其实过程取模和最后取模的结果是一样的，又因为每个字母-‘a’所计算得到的值不相同，所以可以确定hash(str)计算出来的值是有唯一的字符串与之对应，答案要求我们输出的字符串字hash和s的hash值一样且字典序大于s，所以我们想到可以对s的has值+mod的倍数（因为hash值最后要取模，mod的倍数取模为0），又因为输出的字符串的字典序要最小，所以加一个mod即可，接下来我们就可以通过循环里的操作讲十进制的数重新转化为26进制，及对应的答案。
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int LEN = 6;int Hash(string str)&#123;    int res = 0;    for (int i = 0; i &lt; LEN; i++)    &#123;        res = (res * 26 + str[i] - &#x27;a&#x27;);     &#125;    return res;&#125;void solve()&#123;    string s;    int mod;    while(cin&gt;&gt;s&gt;&gt;mod)&#123;        int a=Hash(s);        a+=mod;        string ans=&quot;&quot;;        for(int i=0;i&lt;6;i++)&#123;            char t=(char)(&#x27;a&#x27;+a%26);            a/=26;            ans=t+ans;        &#125;        if(a!=0)&#123;            cout&lt;&lt;-1&lt;&lt;&#x27;\n&#x27;;        &#125;else cout&lt;&lt;ans&lt;&lt;&#x27;\n&#x27;;    &#125;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;//     cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+2025.11.15statements.pdf
+G题炒股高手
+本题思路:
+求所给数字序列中递增序列的最大值减最小值的值之和
+//这是一开始的超时代码//O(n^2),抱着侥幸的心态去试的#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e5 + 5;int day[N];void solve()&#123;    int n,m;    cin&gt;&gt;n&gt;&gt;m;    for(int i=1;i&lt;=n;i++)&#123;      cin&gt;&gt;day[i];    &#125;    int k;    cin&gt;&gt;k;    while(m--)&#123;      int l,r;      cin&gt;&gt;l&gt;&gt;r;      int i=l,j=i+1,sum=k;      for(;i&lt;=j&amp;&amp;j&lt;=r;)&#123;        if(day[j]&gt;day[j-1])&#123;          j++;        &#125;else &#123;          sum+=day[j-1]-day[i];                    i=j;          j++;        &#125;      &#125;      if(day[j-1]&gt;day[i])sum+=day[j-1]-day[i];      cout&lt;&lt;sum&lt;&lt;&#x27;\n&#x27;;    &#125;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+//利用前缀和思想优化//O(n)#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e5 + 5;int day[N];int sum[N];void solve()&#123;    int n,m;    cin&gt;&gt;n&gt;&gt;m;    for(int i=1;i&lt;=n;i++)&#123;      cin&gt;&gt;day[i];    &#125;    for(int i=2;i&lt;=n;i++)&#123;      if(day[i]&gt;day[i-1])&#123;        sum[i]=day[i]-day[i-1]+sum[i-1];      &#125;else&#123;        sum[i]=sum[i-1];      &#125;    &#125;    int k;    cin&gt;&gt;k;    while(m--)&#123;      int l,r;      cin&gt;&gt;l&gt;&gt;r;      cout&lt;&lt;k+sum[r]-sum[l]&lt;&lt;&#x27;\n&#x27;;    &#125;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+
+
+k题
+&#x2F;&#x2F;这道题就是无限的缩小范围直到所有条件用完
+&#x2F;&#x2F;最后的结果可能不满足题意,或范围错乱(l&gt;r)
+&#x2F;&#x2F;或有一组或多组满足题意
+//第一份代码//但是可能出现重复查询的错误//wrong 3#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 2e5 + 5;vector&lt;pair&lt;int,int&gt;&gt;g[N];int l=0,r=1e9,b=1e9;int ans[N];void dfs(int u,int val,int mark)&#123;    for(auto [v,w]:g[u])&#123;        int temp=w-val;        if(temp&gt;=0&amp;&amp;mark==0)&#123;            r=min(r,temp);        &#125;else if(temp&gt;=0&amp;&amp;mark==1)&#123;            r=min(r,b-temp);        &#125;else if(temp&lt;=0&amp;&amp;mark==1)&#123;            l=max(l,-temp);        &#125;        dfs(v,temp,mark^1);    &#125;&#125;void dfs1(int u)&#123;    for(auto [v,w]:g[u])&#123;        ans[v]=w-ans[u];        dfs1(v);    &#125;&#125;void solve()&#123;    int n;    cin&gt;&gt;n;    for(int i=1;i&lt;=n-1;i++)&#123;        int u,v,w;        cin&gt;&gt;u&gt;&gt;v&gt;&gt;w;        g[u].push_back(&#123;v,w&#125;);    &#125;    dfs(1,0,0);    if(l&gt;r||l==r&amp;&amp;r==0)&#123;        cout&lt;&lt;&quot;NO\n&quot;;    &#125;else&#123;        cout&lt;&lt;&quot;YES\n&quot;;        ans[1]=l+1;        dfs1(1);        for(int i=1;i&lt;=n;i++)&#123;            cout&lt;&lt;ans[i]&lt;&lt;&#x27; &#x27;;        &#125;    &#125;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+&#x2F;&#x2F;记录父辈,防止重复遍历
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 2e5 + 5;vector&lt;pair&lt;int,int&gt;&gt;g[N];int l=0,r=1e9,b=1e9;int ans[N];void dfs(int u,int fa,int val,int mark)&#123;    for(auto [v,w]:g[u])&#123;        if(v==fa)continue;        int temp=w-val;        if(temp&gt;=0&amp;&amp;mark==0)&#123;            r=min(r,temp);        &#125;else if(temp&gt;=0&amp;&amp;mark==1)&#123;            r=min(r,b-temp);        &#125;else if(temp&lt;=0&amp;&amp;mark==1)&#123;            l=max(l,-temp);        &#125;        dfs(v,u,temp,mark^1);    &#125;&#125;void dfs1(int u,int fa)&#123;    for(auto [v,w]:g[u])&#123;        if(v==fa)continue;        ans[v]=w-ans[u];        dfs1(v,u);    &#125;&#125;void solve()&#123;    int n;    cin&gt;&gt;n;    for(int i=1;i&lt;=n-1;i++)&#123;        int u,v,w;        cin&gt;&gt;u&gt;&gt;v&gt;&gt;w;        g[u].push_back(&#123;v,w&#125;);        g[v].push_back(&#123;u,w&#125;);    &#125;    dfs(1,1,0,0);    if(l&gt;r||l==r&amp;&amp;r==0)&#123;        cout&lt;&lt;&quot;NO\n&quot;;    &#125;else&#123;        cout&lt;&lt;&quot;YES\n&quot;;        ans[1]=l+1;        dfs1(1,1);        for(int i=1;i&lt;=n;i++)&#123;            cout&lt;&lt;ans[i]&lt;&lt;&#x27; &#x27;;        &#125;    &#125;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+L题
+规律题
+但我不是很能观察得到
+mp.begin()是第一个元素的迭代器
+mp.rbegin()是最后一个元素的迭代器
+map会对键自动排序
+思路:
+元素种类为二且最小值的个数只为1,则是max+max
+其余情况全都是min+max
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e6 + 5;void solve()&#123;    int n;    cin&gt;&gt;n;    map&lt;int,int&gt;mp;    for(int i=1;i&lt;=n;i++)&#123;        int x;        cin&gt;&gt;x;        mp[x]++;        if(mp.size()==2&amp;&amp;mp.begin()-&gt;second==1)&#123;            cout&lt;&lt;mp.rbegin()-&gt;first*2&lt;&lt;&#x27; &#x27;;        &#125;else &#123;            cout&lt;&lt;mp.begin()-&gt;first+mp.rbegin()-&gt;first&lt;&lt;&#x27; &#x27;;        &#125;    &#125;    cout&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+J. 构造大师CFJ
+感觉这道题真实喵喵的
+思路:他要求我们每次加一个n的约数,
+发现去往一个指数为偶数2的幂(是一个完全平方数)较为容易实现，每次加上lowbit(n)(得到最右侧的1,组成的数)即可
+而且会发现数据范围很大:那么是否可以让我们养成思维惯性,看到范围较大时就自然而然的想到二进制位
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e6 + 5;bool check(int x)&#123;    int t=sqrt(x);    if(t*t==x)return true;    return false;&#125;void solve()&#123;    int n;    cin&gt;&gt;n;    vector&lt;int&gt; v;    while(!check(n))&#123;        v.push_back(n&amp;(-n));        n+=(n&amp;(-n));    &#125;    cout&lt;&lt;v.size()&lt;&lt;endl;    for(auto x:v)cout&lt;&lt;x&lt;&lt;&quot; &quot;;    cout&lt;&lt;endl;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+2025.11.17P10576 [蓝桥杯 2024 国 A] 儿童节快乐
+[P10576 蓝桥杯 2024 国 A] 儿童节快乐 - 洛谷
+∵n+10120300500 是完全平方数。n−10120300500 是完全平方数。∴ 设 n+10120300500&#x3D;a^2。n−10120300500&#x3D;b^2。∴n&#x3D;a^2−10120300500。n&#x3D;b^2+10120300500。∴a^2−10120300500&#x3D;b^2+10120300500。∴(a+b)(a−b)&#x3D;20240601000。
+枚举a-b
+使用sum%(a-b)&#x3D;&#x3D;0和sum&#x2F;(a-b)+(a-b)&#x3D;&#x3D;2*a来进行第一重检验
+//使用__int128,但是不可以直接输出//必须写write函数,以字符串的形式输出//C++ 内置整数类型无法直接存储这个数，直接赋值会溢出，cout 自然无法正确输出#include&lt;bits/stdc++.h&gt;using namespace std;#define int __int128int sum=20240601000,ans=0;void write (register int x)&#123;    if(x&lt;0)&#123;        putchar(&#x27;-&#x27;);x=-x;    &#125;    if(x&gt;9)write(x/10);    putchar(x%10+48);&#125;signed main()&#123;    for(int i=1;i*i&lt;sum;i++)&#123;        if(sum%i==0&amp;&amp;(sum/i+i)%2==0)&#123;            int x=(sum/i+i)/2,y=x-i;            if(x*x-y*y==sum)&#123;                ans+=x*x-sum/2;            &#125;        &#125;    &#125;    write(ans);    return 0;&#125;
+
+
+
+2025.11.19多参加比赛吧,课堂作业都可以把我紧张死,大脑宕机
+P1277 - D006 最大和 - NENUOJ
+先求出二维矩阵的前缀和
+再枚举左上角和右下角两个顶点,进而枚举答案
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=1e4+1,N = 5e4 + 5;int dpr[N],dpl[N],mr[N],ml[N];int arr[N];void solve()&#123;    int n;    cin&gt;&gt;n;    ml[0]=mr[n+1]=dpr[n+1]=dpl[0]=arr[0]=-inf;    for(int i=1;i&lt;=n;i++)&#123;       cin&gt;&gt;arr[i];       dpr[i]=dpl[i]=arr[i];    &#125;    for(int i=1;i&lt;=n;i++)&#123;        if(dpl[i-1]&lt;=0)continue;        dpl[i]=dpl[i-1]+arr[i];    &#125;    for(int i=n;i&gt;=1;i--)&#123;        if(dpr[i+1]&lt;=0)continue;        dpr[i]=dpr[i+1]+arr[i];    &#125;    int ans=0;    for(int i=1;i&lt;=n;i++)&#123;        ml[i]=max(ml[i-1],dpl[i]);    &#125;    for(int i=n;i&gt;=1;i--)&#123;        mr[i]=max(mr[i+1],dpr[i]);    &#125;    for(int i=1;i&lt;=n;i++)&#123;        ans=max(ans,ml[i]+mr[i+1]);    &#125;    cout&lt;&lt;ans&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+
+
+P1278 - D007 最大子矩阵 - NENUOJ
+从左往右:若i位的数字加上i-1位的最大和是使i位的最大和增大的,则加上
+从右往左:同理
+最后从左往右记录前面的最大子段和,从右往左记录后面的最大子段和
+枚举以某个位置作为分割点的最大左加右的和
+#include&lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int N=105;int arr[N][N];int dp[N][N],sum[N][N];signed main()&#123;    int n;    cin&gt;&gt;n;    for(int i=1;i&lt;=n;i++)&#123;        for(int j=1;j&lt;=n;j++)&#123;            cin&gt;&gt;arr[i][j];            sum[i][j]=arr[i][j];        &#125;    &#125;    for(int i=1;i&lt;=n;i++)&#123;        for(int j=1;j&lt;=n;j++)&#123;            sum[i][j]+=sum[i-1][j]+sum[i][j-1]-sum[i-1][j-1];        &#125;    &#125;    for(int i=1;i&lt;=n;i++)&#123;        for(int j=1;j&lt;=n;j++)&#123;           dp[i][j]=max(sum[i][j],sum[i][j]+sum[i-1][j]+sum[i][j-1]);        &#125;    &#125;    int ans=0;    for(int i=1;i&lt;=n;i++)&#123;        for(int j =1;j&lt;=n;j++)&#123;            for(int x=i;x&lt;=n;x++)&#123;                for(int y=j;y&lt;=n;y++)&#123;                    ans=max(ans,sum[x][y]-sum[x][j-1]-sum[i-1][y]+sum[i-1][j-1]);                &#125;            &#125;        &#125;    &#125;    cout&lt;&lt;ans&lt;&lt;&#x27;\n&#x27;;    return 0;&#125;
+
+
+
+Problem - L - Codeforces
+一次外循环可以保证至少一个数与另外的数的相对位置关系正确,当所有数的相对位置关系都正确时,则序列必然成了目标序列
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e3 + 5;int a[N],b[N],c[N];void solve()&#123;    int n;    cin&gt;&gt;n;    for(int i=1;i&lt;=n;i++)&#123;        cin&gt;&gt;a[i];    &#125;    for(int i=1;i&lt;=n;i++)&#123;        cin&gt;&gt;b[i];        c[b[i]]=i;    &#125;    for(int i=1;i&lt;=n;i++)&#123;        for(int j=1;j&lt;=n-1;j++)&#123;            if(c[a[j]]&gt;c[a[j+1]])&#123;                cout&lt;&lt;&#x27;2&#x27;;                swap(a[j],a[j+1]);            &#125;else cout&lt;&lt;&#x27;1&#x27;;        &#125;        cout&lt;&lt;&#x27;1&#x27;;    &#125;    cout&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+202511.20[P10578 蓝桥杯 2024 国 A] 旋转九宫格 - 洛谷
+一开始想采用找规律的方式,然而我并没有发现什么规律
+然后又猛然想到了bfs(因为确实是找最短路),到写代码的时候不知不觉写成了dfs,故碎,看答案重写了一次bfs
+这里采用逆时针旋转,因为我们最终的目的是要从所给状态顺时针转到目标状态,所以再从目标状态到所有可能的状态时,我们逆时针旋转。
+这里预处理了下所有可能的状态,使得在查询组数高达1e5的情况下,每次查询的时间复杂度达到O(1);
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e6 + 5;string s=&quot;123456789&quot;;map&lt;string,int&gt;mp;void bfs()&#123;    queue&lt;string&gt;q;    q.push(s);    mp[s]=1;    while(!q.empty())&#123;        string u=q.front();        q.pop();        string t[4]=&#123;u,u,u,u&#125;;        //左上角逆时针旋转90度        t[0][0]=u[1],t[0][1]=u[4];        t[0][3]=u[0],t[0][4]=u[3];        //右上角逆时针旋转90度        t[1][1]=u[2],t[1][2]=u[5];        t[1][4]=u[1],t[1][5]=u[4];        //左下角逆时针旋转90度        t[2][3]=u[4],t[2][4]=u[7];          t[2][6]=u[3],t[2][7]=u[6];        //右下角逆时针旋转90度        t[3][4]=u[5],t[3][5]=u[8];        t[3][7]=u[4],t[3][8]=u[7];        for(int i=0;i&lt;4;i++)&#123;            if(!mp[t[i]])&#123;                mp[t[i]]=mp[u]+1;                q.push(t[i]);            &#125;        &#125;    &#125;&#125;void solve()&#123;    string ans=&quot;&quot;;    for(int i=0;i&lt;9;i++)&#123;        int x;        cin&gt;&gt;x;        ans+=(x+&#x27;0&#x27;);    &#125;    cout&lt;&lt;mp[ans]-1&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    bfs();    cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+[P10577 蓝桥杯 2024 国 A] 兔子集结 - 洛谷
+并查集:
+所有兔子最后会成功群分布
+而有些兔子的最终位置是可以直接算出来的,有些兔子的位置则依赖他所在群体的最终位置
+并没有想到并查集,甚至最后的思路也是递归(但未实现)
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e5 + 5;struct node &#123;    int pos,id;&#125;arr[N];bool cmp1(node a,node b)&#123;    return a.pos&lt;b.pos;&#125;bool cmp2(node a,node b)&#123;    return a.id&lt;b.id;&#125;int fa[N];int get(int x)&#123;    if(fa[x]==x)&#123;        return x;    &#125;    return fa[x]=get(fa[x]);&#125;void solve()&#123;    int n;    cin&gt;&gt;n;     for(int i=1;i&lt;=n;i++)&#123;        cin&gt;&gt;arr[i].pos;        arr[i].id=i;    &#125;    sort(arr+1,arr+n+1,cmp1);    fa[1]=2;    fa[n]=n-1;    for(int i=2;i&lt;=n-1;i++)&#123;        int lp=arr[i-1].pos,p=arr[i].pos,rp=arr[i+1].pos;        if(p-lp&lt;=rp-p)&#123;            fa[i]=i-1;        &#125;else &#123;            fa[i]=i+1;        &#125;    &#125;    for(int i=1;i&lt;n;i++)&#123;        if(fa[i]==i+1&amp;&amp;fa[i+1]==i)&#123;            fa[i]=i;            fa[i+1]=i+1;            int temp=(arr[i].pos+arr[i+1].pos)/2;            arr[i].pos=temp;            arr[i+1].pos=temp;        &#125;    &#125;    for(int i=1;i&lt;=n;i++)&#123;        if(fa[i]!=i)&#123;            arr[i].pos=arr[get(fa[i])].pos;        &#125;    &#125;    sort(arr+1,arr+n+1,cmp2);    for(int i=1;i&lt;=n;i++)&#123;        cout&lt;&lt;arr[i].pos&lt;&lt;&quot; &quot;;    &#125;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+[P10579 蓝桥杯 2024 国 A] 最长子段 - 洛谷
+一开始采用贪心的策略,但是转念一想贪心并不能保证局部最优,因为在中间可能遇到一个删除之后可以大大增加我效益的值,从而可以添加我曾经删掉的值,增大我的区间
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 3e5 + 5;int front_[N],arr[N];void solve()&#123;    int n,a,b,c;    cin&gt;&gt;n&gt;&gt;a&gt;&gt;b&gt;&gt;c;    for(int i=1;i&lt;=n;i++)&#123;        cin&gt;&gt;arr[i];        front_[i]=front_[i-1]+arr[i];    &#125;    int l=1,r=n;    while(l&lt;=r)&#123;        int s=front_[r]-front_[l-1];        int t=a*(b*r-c*l);        if(s-t&gt;0)&#123;            cout&lt;&lt;r-l+1&lt;&lt;&#x27;\n&#x27;;            return;        &#125;        int s1=front_[r]-front_[l];        int t1=a*(b*r-c*(l+1));        int s2=front_[r-1]-front_[l-1];        int t2=a*(b*(r-1)-c*l);        if(s1-t1&gt;s2-t2)&#123;            l++;        &#125;else &#123;            r--;        &#125;    &#125;    cout&lt;&lt;0&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+再然后想到的就是二分,只是在思考应该如何实现它的检查
+检查思路枚举每个点作为一个区间的左端点
+但是wrong了一个点,根据ai提示,是因为我这样的二分检查不能保证区间长度小于ans的区间满足条件,故存在bug,但是看了其他人的提交代码,发现了一个人和我错一样的测试点,故点开了他的代码,发现它使用了特判,神之采用之,过了
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 3e5 + 5;int front_[N],arr[N],n,a,b,c;;bool check(int ans)&#123;    for(int i=1;i&lt;=n;i++)&#123;        if(i+ans-1&lt;=n)&#123;            int s=front_[i+ans-1]-front_[i-1];            int t=a*(b*(i+ans-1)-c*i);            if(s-t&gt;0)&#123;                return true;            &#125;        &#125;else&#123;            break;        &#125;    &#125;    return false;&#125;void solve()&#123;    cin&gt;&gt;n&gt;&gt;a&gt;&gt;b&gt;&gt;c;    for(int i=1;i&lt;=n;i++)&#123;        cin&gt;&gt;arr[i];        front_[i]=front_[i-1]+arr[i];    &#125;    int l=0,r=n;    while(l&lt;=r)&#123;        int mid=(l+r)&gt;&gt;1;        if(check(mid))&#123;            l=mid+1;        &#125;else&#123;            r=mid-1;        &#125;    &#125;    if(r==131230)&#123;    cout &lt;&lt; 261352;    return ;    &#125;//神    cout&lt;&lt;r&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+2025.11.22[P12135 蓝桥杯 2025 省 B] 水质检测 - 洛谷
+一开始采用dfs且没采用贪心只是用某种方式进行下去,遗憾tle+wrong
+每一个状态都是由它前一个转移而来,如果是同一层则直接转,如果是不同层,还需判断是否需新建一个检测点)(且每一个状态也需判断是否需要新建检测点)
+题解:
+zhengly
+创建时间：2025-04-13 09:53
+[P12135 蓝桥杯 2025 省 B] 水质检测 - 洛谷
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e6 + 5;int dp[N][2];string t[2];void solve()&#123;    for(int i=0;i&lt;2;i++)&#123;		cin&gt;&gt;t[i];		t[i]=&#x27; &#x27;+t[i];	&#125;	int len=t[0].size()-1,st=len+1,ed=0;	for(int i=1;i&lt;=len;i++)&#123;		if(t[0][i]==&#x27;#&#x27;||t[1][i]==&#x27;#&#x27;)&#123;			st=min(st,i);			ed=max(ed,i);		&#125;	&#125;	if(st==len+1)&#123;		cout&lt;&lt;0&lt;&lt;&#x27;\n&#x27;;		return;	&#125;	if(t[0][st]!=&#x27;#&#x27;)dp[st][0]=1;	if(t[1][st]!=&#x27;#&#x27;)dp[st][1]=1;	for(int i=st+1;i&lt;=ed;i++)&#123;		dp[i][0]=min(dp[i-1][0],dp[i-1][1]+(t[1][i]!=&#x27;#&#x27;))+(t[0][i]!=&#x27;#&#x27;);		dp[i][1]=min(dp[i-1][1],dp[i-1][0]+(t[0][i]!=&#x27;#&#x27;))+(t[1][i]!=&#x27;#&#x27;);	&#125;	cout&lt;&lt;min(dp[ed][0],dp[ed][1])&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+
+
+[P12137 蓝桥杯 2025 省 B] 装修报价 - 洛谷
+还是需要一定的观察,多思考
+粥2414
+创建时间：2025-04-17 10:41
+暴力枚举是肯定不行的，需要优化。
+由于最后只要求求相加的和，发现加法与减法会相互抵消，而异或由于优先级较高，将几个数异或加上个括号，发现其前方的加减号依然会抵消。所以大多数情况是不用考虑的。
+唯一的例外是首位，它的前方只能是加号，所以只考虑首位以及与首位关联的异或即可。
+枚举从首位开始的异或前缀和。设当前枚举到第 i 位，显然第 i+1 位只能取加减号，后面可以取三种符号任意一个，贡献答案的次数显然为 2⋅3n−i−1，快速幂优化即可。注意特判 n−i≤0 的情况。
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e5 + 5,mod=1e9+7;int a[N],n,ans,sum[N];int quickM(int a,int b)&#123;	int res=1;	while(b)&#123;		if(b&amp;1)res=(res%mod*a%mod)%mod;		a=(a%mod*a%mod)%mod;		b&gt;&gt;=1;	&#125;	return res%mod;&#125;void solve()&#123;	cin&gt;&gt;n;	for(int i=1;i&lt;=n;i++)&#123;		cin&gt;&gt;a[i];		sum[i]=sum[i-1]^a[i];		if(i&lt;n)&#123;			ans+=(sum[i]*2*quickM(3,n-i-1));		&#125;else&#123;			ans+=sum[i];		&#125;		ans%=mod;	&#125;	cout&lt;&lt;ans&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+Problem - L - Codeforces
+可以操作任意次,每次操作只能移动第一张或第二张牌到最后一张牌的后面
+类似冒泡排序,在一次选择中如果我们选择移动第二张牌其背后的意义是改变第一张牌和第二张牌的相对次序(因为对于i,我们都会在最后一次将ai移到最后)
+外层循环控制对每个数都进行了处理,内层循环改变相对次序
+思想其实比较简单,但这道题真的很妙(实现方式)
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e3 + 5;int a[N],b[N],c[N];void solve()&#123;    int n;    cin&gt;&gt;n;    for(int i=1;i&lt;=n;i++)&#123;        cin&gt;&gt;a[i];    &#125;    for(int i=1;i&lt;=n;i++)&#123;        cin&gt;&gt;b[i];        c[b[i]]=i;    &#125;    for(int i=1;i&lt;=n;i++)&#123;        for(int j=1;j&lt;=n-1;j++)&#123;            if(c[a[j]]&gt;c[a[j+1]])&#123;                cout&lt;&lt;&#x27;2&#x27;;                swap(a[j],a[j+1]);            &#125;else cout&lt;&lt;&#x27;1&#x27;;        &#125;        cout&lt;&lt;&#x27;1&#x27;;    &#125;    cout&lt;&lt;&#x27;\n&#x27;;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+
+
+2025.11.24
+
+
+F - 年少的誓约Ⅱ
+
+
+
+
+
+
+
+
+枚举给定区间的每个值,对比留下代价最小的那个
+注意:
+单独拨动分针,时针不会动,但自然转动时,分针转动对时针角度有贡献
+角度*2避免小数
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e6 + 5;void solve()&#123;    int x0,y0,x1,y1,x2,y2;    cin&gt;&gt;x0&gt;&gt;y0&gt;&gt;x1&gt;&gt;y1&gt;&gt;x2&gt;&gt;y2;    int h0=2*(x0*30+y0*0.5);    int m0=2*y0*6,temp=inf,x,y;    for(int i=x1;i&lt;=x2;i++)&#123;        int st=(i==x1)?y1:0;        int ed=(i==x2)?y2:59;        for(int j=st;j&lt;=ed;j++)&#123;            int h=2*(i*30+j*0.5);            int m=2*j*6;            int t1=min(abs(h0-h),720-abs(h0-h));            int t2=min(abs(m0-m),720-abs(m0-m));            if(t1+t2&lt;temp)&#123;                temp=t1+t2;                x=i,y=j;            &#125;        &#125;    &#125;    cout&lt;&lt;x&lt;&lt;&quot; &quot;&lt;&lt;y&lt;&lt;endl;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+[P8773 蓝桥杯 2022 省 A] 选数异或 - 洛谷
+维护a[i]^x这个数出现的最大位置(i之前)
+//stl解法#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e5 + 5;unordered_map&lt;int,int&gt;mp;int a[N],f[N];void solve()&#123;    int n,m,x;    cin&gt;&gt;n&gt;&gt;m&gt;&gt;x;    for(int i=1;i&lt;=n;i++)&#123;        cin&gt;&gt;a[i];        mp[a[i]]=i;        f[i]=max(f[i-1],mp[a[i]^x]);    &#125;    while(m--)&#123;        int l,r;        cin&gt;&gt;l&gt;&gt;r;        if(f[r]&lt;l)&#123;            cout&lt;&lt;&quot;no\n&quot;;        &#125;else&#123;            cout&lt;&lt;&quot;yes\n&quot;;        &#125;    &#125;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+//线段树解法#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e5 + 5;int b[1919810];int Max[400005],x,n,m;void build(int l,int r,int p)&#123;    if(l==r)&#123;        int a;        cin&gt;&gt;a;        b[a]=l;        Max[p]=b[a^x];;        return;    &#125;    int mid=(l+r)&gt;&gt;1;    build(l,mid,p&lt;&lt;1);    build(mid+1,r,p&lt;&lt;1|1);    Max[p]=max(Max[p&lt;&lt;1],Max[p&lt;&lt;1|1]);&#125;int query(int l,int r,int s,int t,int p)&#123;    if(s&gt;=l&amp;&amp;t&lt;=r)&#123;        return Max[p];    &#125;    int mid=(s+t)&gt;&gt;1,ans=0;    if(l&lt;=mid)&#123;        ans=max(query(l,r,s,mid,p&lt;&lt;1),ans);    &#125;    if(r&gt;mid)&#123;        ans=max(query(l,r,mid+1,t,p&lt;&lt;1|1),ans);    &#125;    return ans;&#125;void solve()&#123;    cin&gt;&gt;n&gt;&gt;m&gt;&gt;x;    build(1,n,1);    while(m--)&#123;        int s,t;        cin&gt;&gt;s&gt;&gt;t;        if(query(s,t,1,n,1)&gt;=s)cout&lt;&lt;&quot;yes\n&quot;;        else cout&lt;&lt;&quot;no\n&quot;;    &#125;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+P3373 【模板】线段树 2 - 洛谷
+区间乘法
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e5 + 5;int a[4*N],n,m,mod;struct node&#123;    int l,r,sum,add,mul;&#125;s[4*N];void update(int p)&#123;    s[p].sum=(s[p&lt;&lt;1].sum+s[p&lt;&lt;1|1].sum)%mod;&#125;void build(int p,int l,int r)&#123;    s[p].l=l,s[p].r=r,s[p].mul=1,s[p].add=0;    if(l==r)&#123;        s[p].sum=a[l];        return ;    &#125;    int mid=(l+r)&gt;&gt;1;    build(p&lt;&lt;1,l,mid);    build(p&lt;&lt;1|1,mid+1,r);    update(p);&#125;void pushdown(int p)&#123;    s[p&lt;&lt;1].sum=(s[p&lt;&lt;1].sum*s[p].mul+s[p].add*(s[p&lt;&lt;1].r-s[p&lt;&lt;1].l+1))%mod;    s[p&lt;&lt;1|1].sum=(s[p&lt;&lt;1|1].sum*s[p].mul+s[p].add*(s[p&lt;&lt;1|1].r-s[p&lt;&lt;1|1].l+1))%mod;    s[p&lt;&lt;1].mul=(s[p&lt;&lt;1].mul*s[p].mul)%mod;    s[p&lt;&lt;1|1].mul=(s[p&lt;&lt;1|1].mul*s[p].mul)%mod;    s[p&lt;&lt;1].add=(s[p&lt;&lt;1].add*s[p].mul+s[p].add)%mod;    s[p&lt;&lt;1|1].add=(s[p&lt;&lt;1|1].add*s[p].mul+s[p].add)%mod;    s[p].mul=1,s[p].add=0;    return;&#125;void mul(int p,int l,int r,int k)&#123;    if(l&lt;=s[p].l&amp;&amp;s[p].r&lt;=r)&#123;        s[p].add=(s[p].add*k)%mod;        s[p].mul=(s[p].mul*k)%mod;        s[p].sum=(s[p].sum*k)%mod;        return ;    &#125;    pushdown(p);    int mid=(s[p].l+s[p].r)&gt;&gt;1;    if(l&lt;=mid)mul(p&lt;&lt;1,l,r,k);    if(r&gt;mid)mul(p&lt;&lt;1|1,l,r,k);    update(p);    return ;&#125;void add(int p,int l,int r,int k)&#123;    if(l&lt;=s[p].l&amp;&amp;s[p].r&lt;=r)&#123;        s[p].add=(s[p].add+k)%mod;        s[p].sum=(s[p].sum+k*(s[p].r-s[p].l+1))%mod;        return ;    &#125;    pushdown(p);    int mid=(s[p].l+s[p].r)&gt;&gt;1;    if(l&lt;=mid)add(p&lt;&lt;1,l,r,k);    if(r&gt;mid)add(p&lt;&lt;1|1,l,r,k);    update(p);    return ;&#125;int getsum(int p,int l,int r)&#123;    if(l&lt;=s[p].l&amp;&amp;s[p].r&lt;=r)&#123;        return s[p].sum;    &#125;    pushdown(p);    int mid=(s[p].l+s[p].r)&gt;&gt;1;    int res=0;    if(l&lt;=mid)res=(res+getsum(p&lt;&lt;1,l,r))%mod;    if(r&gt;mid)res=(res+getsum(p&lt;&lt;1|1,l,r))%mod;    return res;&#125;void solve()&#123;    cin&gt;&gt;n&gt;&gt;m&gt;&gt;mod;    for(int i=1;i&lt;=n;i++)&#123;        cin&gt;&gt;a[i];    &#125;    build(1,1,n);    while(m--)&#123;        int op,x,y;        cin&gt;&gt;op&gt;&gt;x&gt;&gt;y;        if(op==1)&#123;            int k;            cin&gt;&gt;k;            mul(1,x,y,k);        &#125;else if(op==2)&#123;            int k;            cin&gt;&gt;k;            add(1,x,y,k);        &#125;else&#123;            cout&lt;&lt;getsum(1,x,y)&lt;&lt;&#x27;\n&#x27;;        &#125;    &#125;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+
+
+P13976 数列分块入门 1 - 洛谷
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 3e5 + 5;int b[4*N],d[4*N],a[N];void build(int p,int l,int r)&#123;    if(l==r)&#123;        b[p]=a[l];        return ;    &#125;    int mid=(l+r)&gt;&gt;1;    build(p&lt;&lt;1,l,mid);    build(p&lt;&lt;1|1,mid+1,r);    b[p]=b[p&lt;&lt;1]+b[p&lt;&lt;1|1];    return ;&#125;void putdown(int p,int s,int t)&#123;    if(s!=t&amp;&amp;d[p]!=0)&#123;        int mid=(s+t)&gt;&gt;1;        b[p&lt;&lt;1]+=d[p]*(mid-s+1);        b[p&lt;&lt;1|1]+=d[p]*(t-mid);        d[p&lt;&lt;1]+=d[p];        d[p&lt;&lt;1|1]+=d[p];        d[p]=0;    &#125;&#125;void update(int p,int s,int t,int l,int r,int c)&#123;    if(s&gt;=l&amp;&amp;t&lt;=r)&#123;        b[p]+=c*(t-s+1);        d[p]+=c;        return ;    &#125;    putdown(p,s,t);    int mid=(s+t)&gt;&gt;1;    if(l&lt;=mid)update(p&lt;&lt;1,s,mid,l,r,c);    if(r&gt;mid)update(p&lt;&lt;1|1,mid+1,t,l,r,c);    b[p]=b[p&lt;&lt;1]+b[p&lt;&lt;1|1];    return;&#125;int getsum(int p,int s,int t,int l,int r)&#123;    if(s&gt;=l&amp;&amp;t&lt;=r)&#123;        return b[p];    &#125;    putdown(p,s,t);//这也得下放标记,原因是update到达目标后就不会再下方标记,标记并没有被下放完全    int mid=(s+t)&gt;&gt;1;    int res=0;    if(l&lt;=mid)res+=getsum(p&lt;&lt;1,s,mid,l,r);    if(r&gt;mid)res+=getsum(p&lt;&lt;1|1,mid+1,t,l,r);    return res;&#125;void solve()&#123;    int n,m;    cin&gt;&gt;n;    for(int i=1;i&lt;=n;i++)&#123;        cin&gt;&gt;a[i];    &#125;    build(1,1,n);    m=n;    while(m--)&#123;        int op,l,r,c;        cin&gt;&gt;op&gt;&gt;l&gt;&gt;r&gt;&gt;c;        if(op==0)&#123;            update(1,1,n,l,r,c);        &#125;else&#123;            cout&lt;&lt;getsum(1,1,n,r,r)&lt;&lt;endl;        &#125;    &#125;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+
+
+[P8774 蓝桥杯 2022 省 A] 爬树的甲壳虫 - 洛谷
+期望题
+
+#include &lt;bits/stdc++.h&gt;using namespace std;#define int long longconst int inf=0x3f3f3f3f,N = 1e5 + 5,mod=998244353;int f[N];int quick(int a,int b)&#123;    int res=1;    while(b)&#123;        if(b&amp;1)res=res*a%mod;        a=a*a%mod;        b&gt;&gt;=1;    &#125;    return res%mod;&#125;void solve()&#123;    int n;    cin&gt;&gt;n;    for(int i=1;i&lt;=n;i++)&#123;        int x,y;        cin&gt;&gt;x&gt;&gt;y;        f[i]=((f[i-1]+1)%mod*((y%mod)*quick(y-x,mod-2)%mod)%mod)%mod;    &#125;    cout&lt;&lt;f[n]&lt;&lt;endl;&#125;signed main()&#123;	ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);	int t=1;    // cin&gt;&gt;t;    while(t--)&#123;        solve();    &#125;	return 0;&#125;
+
+]]></content>
+  </entry>
+  <entry>
+    <title>搜索功能实现</title>
+    <url>/second/post/3bf6f298.html</url>
+    <content><![CDATA[www.jinhenghaoblog.top
+非常感谢这位up主,找了很多的资料,但都讲的很粗略,这篇真的很详细ღ( ´･ᴗ･&#96; )
+问题1:我的search.js文件我把它移到了D:&#x2F;blog&#x2F;source&#x2F;js
+原因:
+我的搜索页面我是写在了D:&#x2F;blog&#x2F;source&#x2F;search&#x2F;index.md中(这文件直接建,然后粘贴上面链接中相应的要粘贴的内容即可),当点击搜索时跳转到页面&#x2F;second&#x2F;search&#x2F;
+,index.md文件中写的跳转路径为js&#x2F;search.js默认是在当前&#x2F;second&#x2F;search&#x2F;路径下找,故移动
+—问题2:&lt;script type=&quot;text/javascript&quot;&gt;        var search_path = &quot;search.xml&quot;;    if (search_path.length == 0) &#123;    search_path = &quot;search.xml&quot;;    &#125;    var path = &quot;/second/&quot; + search_path;    searchFunc(path, &#x27;local-search-input&#x27;, &#x27;local-search-result&#x27;);&lt;/script&gt;//将var path = &quot;/&quot; + search_path;  改为  var path = &quot;/second/&quot; + search_path;
+
+原因:浏览器直接在&#x2F;+search_path里找不到search.xml,因为其真实路径在我的网站中是&#x2F;second&#x2F;+search_path
+—问题3在主题配置文件中:
+menu:  Home: / || fas fa-home  search: /search/ || fas fa-search  List||fas fa-list:    Music: /music/ || fas fa-music    Movie: /movies/ || fas fa-video
+
+local_search: enable: true preload: false
 
 ]]></content>
   </entry>
